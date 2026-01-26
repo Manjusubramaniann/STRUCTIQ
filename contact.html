@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | STRUCT IQ</title>
+
+    <title>Contact Us | STRUCT IQ</title>
+
+    <meta name="description"
+        content="Contact STRUCT IQ for professional rebar detailing and estimation services. Reach our experts via phone, email, or WhatsApp for project enquiries.">
+
+    <meta name="keywords"
+        content="Contact STRUCT IQ, Rebar Detailing Contact, Structural Detailing Enquiry, Rebar Estimation Services">
+
+    <meta name="author" content="STRUCT IQ">
+
+    <meta name="robots" content="index, follow">
+
+    <!-- Social Media Preview -->
+    <meta property="og:title" content="Contact STRUCT IQ | Rebar Detailing Experts">
+    <meta property="og:description"
+        content="Get in touch with STRUCT IQ for accurate and reliable rebar detailing and estimation services. Call, email, or WhatsApp our experts.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://yourdomain.com/images/og-image.jpg">
+
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+    <header class="header">
+        <div class="container header-flex">
+
+            <div class="logo">
+                <h2>STRUCT IQ</h2>
+            </div>
+
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="approach.html">Working Approach</a></li>
+                    <li><a href="mission.html">Mission</a></li>
+                    <!-- <li><a href="contact.html" class="active">Contact</a></li> -->
+                </ul>
+            </nav>
+
+            <div class="header-contact">
+                <span>📞 +91 12345 67890</span>
+                <a href="mailto:aaaa@gmail.com">✉️ aaaa@gmail.com</a>
+                <button class="cta-btn">Call With Our Expert</button>
+            </div>
+
+            <div class="menu-toggle">☰</div>
+        </div>
+    </header>
+
+    <!-- ================= PAGE HERO ================= -->
+    <section class="page-hero">
+        <div class="container">
+            <h1>Contact Us</h1>
+            <p>
+                Get in touch with our experts for professional rebar
+                detailing and estimation services.
+            </p>
+        </div>
+    </section>
+
+    <!-- ================= CONTACT CONTENT ================= -->
+    <section class="page-content">
+        <div class="container">
+
+            <!-- Contact Form -->
+            <form class="contact-form" onsubmit="sendMail(event)">
+
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" id="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input type="tel" id="phone" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Your Comment</label>
+                    <textarea id="message" rows="4" required></textarea>
+                </div>
+
+                <button type="submit" class="primary-btn">Send Message</button>
+            </form>
+
+            <!-- Quick Contact Buttons -->
+            <div class="quick-contact">
+                <a href="tel:+911234567890" class="primary-btn">📞 Call</a>
+                <a href="https://wa.me/911234567890" target="_blank" class="primary-btn">💬 WhatsApp</a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="footer">
+        <div class="container footer-grid">
+
+            <div>
+                <h3>STRUCT IQ</h3>
+                <p>
+                    Professional rebar detailing and estimation services
+                    delivered with accuracy and reliability.
+                </p>
+            </div>
+
+            <div>
+                <h4>Contact</h4>
+                <p>📞 +91 12345 67890</p>
+                <p>✉️ aaaa@gmail.com</p>
+            </div>
+
+            <!-- <div>
+                <h4>Software We Use</h4>
+                <p>AUTO CAD</p>
+                <p>CADS RC</p>
+                <p>REBAR CAD</p>
+            </div> -->
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 STRUCT IQ. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JS -->
+    <script src="js/main.js"></script>
+
+    <!-- CONTACT MAIL SCRIPT -->
+    <script>
+        function sendMail(e) {
+            e.preventDefault();
+
+            const name = document.getElementById("name").value;
+            const phone = document.getElementById("phone").value;
+            const email = document.getElementById("email").value;
+            const message = document.getElementById("message").value;
+
+            const subject = "New Contact Enquiry - STRUCT IQ";
+            const body =
+                "Name: " + name + "%0D%0A" +
+                "Phone: " + phone + "%0D%0A" +
+                "Email: " + email + "%0D%0A%0D%0A" +
+                "Message:%0D%0A" + message;
+
+            window.location.href =
+                "mailto:iyyakone4372@gmail.com" +
+                "?subject=" + encodeURIComponent(subject) +
+                "&body=" + body;
+        }
+    </script>
+
+</body>
+
+</html>

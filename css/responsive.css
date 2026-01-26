@@ -1,0 +1,296 @@
+/* ==========================
+   TABLET (max-width: 1024px)
+========================== */
+@media (max-width: 1024px) {
+
+  /* Layout adjustments */
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    text-align: center;
+  }
+
+  .hero-content h1 {
+    font-size: 36px;
+  }
+
+  .hero-box {
+    height: 240px;
+  }
+
+  .service-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .why-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* ==========================
+     PROFESSIONAL MOBILE / TAB NAV
+  ========================== */
+
+  .menu-toggle {
+    display: block;
+    font-size: 22px;
+    color: #2563eb;
+    cursor: pointer;
+  }
+
+  .nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: #ffffff;
+    border-top: 1px solid #e2e8f0;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+
+    /* animation */
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease;
+  }
+
+  .nav.active {
+    max-height: 420px; /* smooth open */
+  }
+
+  .nav ul {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+  }
+
+  .nav li {
+    width: 100%;
+    border-bottom: 1px solid #e2e8f0;
+  }
+
+  .nav a {
+    display: block;
+    width: 100%;
+    padding: 16px 22px;
+    font-size: 15px;
+    font-weight: 500;
+    color: #0f172a;
+    text-align: left;
+  }
+
+  .nav a:hover {
+    background: #f8fafc;
+  }
+
+  /* hide desktop contact */
+  .header-contact {
+    display: none;
+  }
+}
+
+/* ==========================
+   MOBILE (max-width: 768px)
+========================== */
+@media (max-width: 768px) {
+
+  .hero {
+    padding: 60px 0;
+  }
+
+  .hero-content h1 {
+    font-size: 30px;
+  }
+
+  .hero-content p {
+    font-size: 15px;
+  }
+
+  .primary-btn {
+    padding: 12px 22px;
+  }
+
+  .intro {
+    padding: 40px 0;
+  }
+
+  .services-preview {
+    padding: 60px 0;
+  }
+
+  .service-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .why-us {
+    padding: 60px 0;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .footer {
+    padding: 50px 0 25px;
+  }
+}
+
+/* ==========================
+   SMALL MOBILE (max-width: 480px)
+========================== */
+@media (max-width: 480px) {
+
+  .logo h2 {
+    font-size: 20px;
+  }
+
+  .hero-content h1 {
+    font-size: 26px;
+  }
+
+  .hero-box {
+    height: 200px;
+  }
+
+  .service-card {
+    padding: 24px;
+  }
+
+  .why-box h3 {
+    font-size: 16px;
+  }
+
+  .footer p {
+    font-size: 13px;
+  }
+}
+.menu-toggle {
+  line-height: 1;
+  user-select: none;
+}
+
+/* ==========================
+   ACTIVE MOBILE NAV ITEM
+========================== */
+@media (max-width: 1024px) {
+
+  .nav a.active {
+    font-weight: 600;
+    color: #2563eb;
+    position: relative;
+    background: #f8fafc;
+  }
+
+  .nav a.active::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background: #2563eb;
+  }
+}
+
+@media (max-width: 768px) {
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    text-align: left;
+  }
+
+  .footer {
+    padding: 60px 0 25px;
+  }
+}
+
+/* =====================
+   SOFTWARE WE USE (RESPONSIVE FIX)
+===================== */
+.software-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px;
+  align-items: stretch;
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .software-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .software-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .software-card {
+    padding: 28px 22px;
+  }
+}
+
+
+/* Tablet / small laptop alignment fix */
+@media (max-width: 1200px) {
+
+  .page-hero {
+    padding: 60px 0;   /* reduce height */
+  }
+
+  .page-hero h1 {
+    font-size: 34px;
+  }
+}
+
+/* Mobile fix */
+@media (max-width: 768px) {
+
+  .page-hero {
+    padding: 50px 0;
+  }
+
+  .page-hero h1 {
+    font-size: 28px;
+  }
+
+  .page-hero p {
+    font-size: 15px;
+  }
+}
+
+/* ==========================
+   MOBILE NAV ACTIVE INDICATOR FIX
+========================== */
+@media (max-width: 1024px) {
+
+  .nav a.active {
+    position: relative;
+    font-weight: 600;
+    color: #2563eb;
+    background: #f8fafc;
+  }
+
+  .nav a.active::before {
+    content: '';
+    position: absolute;
+    left: 12px;              /* 🔑 moved inside */
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 60%;             /* not full height – premium look */
+    background: #2563eb;
+    border-radius: 4px;
+  }
+
+  /* increase left padding so text doesn't overlap bar */
+  .nav a {
+    padding-left: 32px;      /* 🔑 important */
+  }
+}
