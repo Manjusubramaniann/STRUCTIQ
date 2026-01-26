@@ -67,7 +67,7 @@ section::after {
 
 .nav a {
   text-decoration: none;
-  font-size: 14px;
+  font-size: 17px;
   font-weight: 500;
   color: #334155;
   position: relative;
@@ -794,5 +794,21 @@ body.no-scroll {
     width: 52px;
     height: 52px;
     margin-bottom: 12px;
+  }
+}
+
+/* =====================
+   LOGO IMAGE FIX (ALL BROWSERS)
+===================== */
+.logo img {
+  height: 100px;        /* desktop size */
+  width: auto;
+  display: block;      /* 🔑 Vivo browser fix */
+}
+
+/* Mobile logo size */
+@media (max-width: 768px) {
+  .logo img {
+    height: 100px;
   }
 }
