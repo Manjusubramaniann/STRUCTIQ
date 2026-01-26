@@ -155,5 +155,6 @@ document.addEventListener("click", (e) => {
 });
 
 
+
 window.addEventListener("scroll", revealOnScroll);
 window.addEventListener("load", revealOnScroll);

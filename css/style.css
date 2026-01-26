@@ -662,3 +662,19 @@ body.no-scroll {
   font-size: 13px;
   color: #94a3b8;
 }
+
+/* Improve desktop nav alignment */
+/* .nav {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+} */
+
+/* Space between Mail and Call – SAFE FIX */
+.mobile-contact a {
+  margin-right: 18px;
+}
+
+.mobile-contact .cta-btn {
+  margin-right: 0;   /* last item clean */
+}

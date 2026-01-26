@@ -283,7 +283,7 @@
 }
 
 /* Mobile & Tablet Header Fix */
-@media (max-width: 1024px) {
+/* @media (max-width: 1024px) {
 
     .header-flex {
         flex-wrap: wrap;
@@ -308,4 +308,11 @@
         padding: 10px 14px;
         font-size: 14px;
     }
+} */
+
+
+@media (max-width: 1024px) {
+  .nav ul {
+    padding-top: 10px;
+  }
 }
