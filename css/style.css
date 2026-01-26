@@ -837,7 +837,7 @@ body.no-scroll {
 
 /* Logo image fix */
 .logo img {
-  height: 42px;
+  height: 200px;
   width: auto;
   display: block;           /* 🔑 prevents baseline issues */
   vertical-align: middle;  /* 🔑 fallback */
@@ -846,6 +846,6 @@ body.no-scroll {
 /* Mobile size */
 @media (max-width: 768px) {
   .logo img {
-    height: 36px;
+    height: 100px;
   }
 }
