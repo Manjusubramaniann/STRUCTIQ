@@ -50,14 +50,14 @@
     border-top: 1px solid #e2e8f0;
     box-shadow: 0 10px 25px rgba(0,0,0,0.08);
 
-    /* animation */
+    /* FIX 1: height increased so mobile-contact shows */
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.35s ease;
   }
 
   .nav.active {
-    max-height: 420px; /* smooth open */
+    max-height: 650px; /* 🔑 was 420px */
   }
 
   .nav ul {
@@ -74,20 +74,16 @@
   .nav a {
     display: block;
     width: 100%;
-    padding: 16px 22px;
+    padding: 16px 22px 16px 36px; /* 🔑 space for active bar */
     font-size: 15px;
     font-weight: 500;
     color: #0f172a;
     text-align: left;
+    text-decoration: none;
   }
 
   .nav a:hover {
     background: #f8fafc;
-  }
-
-  /* hide desktop contact */
-  .header-contact {
-    display: none;
   }
 }
 
@@ -130,8 +126,9 @@
 
   .footer-grid {
     grid-template-columns: 1fr;
-    text-align: center;
+    text-align: left;
   }
+
 
   .footer {
     padding: 50px 0 25px;
@@ -167,44 +164,34 @@
     font-size: 13px;
   }
 }
+
 .menu-toggle {
   line-height: 1;
   user-select: none;
 }
 
 /* ==========================
-   ACTIVE MOBILE NAV ITEM
+   ACTIVE MOBILE NAV ITEM (FINAL – SINGLE SOURCE)
 ========================== */
 @media (max-width: 1024px) {
 
   .nav a.active {
+    position: relative;
     font-weight: 600;
     color: #2563eb;
-    position: relative;
     background: #f8fafc;
   }
 
   .nav a.active::before {
     content: '';
     position: absolute;
-    left: 0;
-    top: 0;
+    left: 16px;               /* 🔑 visible inside */
+    top: 50%;
+    transform: translateY(-50%);
     width: 4px;
-    height: 100%;
+    height: 60%;
     background: #2563eb;
-  }
-}
-
-@media (max-width: 768px) {
-
-  .footer-grid {
-    grid-template-columns: 1fr;
-    gap: 40px;
-    text-align: left;
-  }
-
-  .footer {
-    padding: 60px 0 25px;
+    border-radius: 4px;
   }
 }
 
@@ -218,14 +205,12 @@
   align-items: stretch;
 }
 
-/* Tablet */
 @media (max-width: 1024px) {
   .software-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-/* Mobile */
 @media (max-width: 768px) {
   .software-grid {
     grid-template-columns: 1fr;
@@ -236,12 +221,12 @@
   }
 }
 
-
-/* Tablet / small laptop alignment fix */
+/* =====================
+   PAGE HERO ALIGNMENT FIX
+===================== */
 @media (max-width: 1200px) {
-
   .page-hero {
-    padding: 60px 0;   /* reduce height */
+    padding: 60px 0;
   }
 
   .page-hero h1 {
@@ -249,9 +234,7 @@
   }
 }
 
-/* Mobile fix */
 @media (max-width: 768px) {
-
   .page-hero {
     padding: 50px 0;
   }
@@ -266,31 +249,63 @@
 }
 
 /* ==========================
-   MOBILE NAV ACTIVE INDICATOR FIX
+   MOBILE / TAB NAV CONTACT (FINAL)
 ========================== */
 @media (max-width: 1024px) {
 
-  .nav a.active {
-    position: relative;
-    font-weight: 600;
-    color: #2563eb;
-    background: #f8fafc;
+  /* hide desktop contact */
+  .header-contact {
+    display: none !important;
   }
 
-  .nav a.active::before {
-    content: '';
-    position: absolute;
-    left: 12px;              /* 🔑 moved inside */
-    top: 50%;
-    transform: translateY(-50%);
-    width: 4px;
-    height: 60%;             /* not full height – premium look */
-    background: #2563eb;
-    border-radius: 4px;
+  /* show mobile nav contact */
+  .mobile-contact {
+    display: block;
+    padding: 20px 22px;
+    border-top: 1px solid #e2e8f0;
+    margin-top: 12px;
   }
 
-  /* increase left padding so text doesn't overlap bar */
-  .nav a {
-    padding-left: 32px;      /* 🔑 important */
+  .mobile-contact span,
+  .mobile-contact a {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 8px;
+    color: #0f172a;
+    text-decoration: none;
   }
+
+  .mobile-contact .cta-btn {
+    margin-top: 10px;
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* Mobile & Tablet Header Fix */
+@media (max-width: 1024px) {
+
+    .header-flex {
+        flex-wrap: wrap;
+    }
+
+    .header-contact {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-top: 10px;
+        width: 100%;
+        text-align: center;
+    }
+
+    .header-contact span,
+    .header-contact a {
+        font-size: 14px;
+    }
+
+    .cta-btn {
+        display: inline-block;
+        padding: 10px 14px;
+        font-size: 14px;
+    }
 }

@@ -459,6 +459,15 @@ body.no-scroll {
   display: flex;
   gap: 16px;
 }
+/* Remove underline from hero action buttons */
+.hero-actions a {
+  text-decoration: none;
+}
+.primary-btn,
+.secondary-btn {
+  text-decoration: none;
+}
+
 
 .secondary-btn {
   padding: 14px 26px;
