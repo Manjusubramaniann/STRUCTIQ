@@ -812,3 +812,40 @@ body.no-scroll {
     height: 100px;
   }
 }
+
+/* =====================
+   LOGO ALIGNMENT FIX (ALL BROWSERS)
+===================== */
+
+/* Header flex safety */
+.header-flex {
+  align-items: center;      /* force center */
+}
+
+/* Logo wrapper fix */
+.logo {
+  display: flex;
+  align-items: center;
+  line-height: 0;           /* 🔑 Vivo fix */
+}
+
+/* Logo link fix */
+.logo a {
+  display: flex;
+  align-items: center;
+}
+
+/* Logo image fix */
+.logo img {
+  height: 42px;
+  width: auto;
+  display: block;           /* 🔑 prevents baseline issues */
+  vertical-align: middle;  /* 🔑 fallback */
+}
+
+/* Mobile size */
+@media (max-width: 768px) {
+  .logo img {
+    height: 36px;
+  }
+}
