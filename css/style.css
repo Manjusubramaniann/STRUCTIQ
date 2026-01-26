@@ -682,7 +682,7 @@ body.no-scroll {
 /* =====================
    WHATSAPP FLOAT BUTTON
 ===================== */
-.whatsapp-float {
+/* .whatsapp-float {
   position: fixed;
   bottom: 24px;
   right: 24px;
@@ -696,24 +696,114 @@ body.no-scroll {
   box-shadow: 0 12px 25px rgba(0, 0, 0, 0.25);
   z-index: 9999;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
+} */
 
-.whatsapp-float img {
+/* .whatsapp-float img {
   width: 28px;
   height: 28px;
-}
+} */
 
-.whatsapp-float:hover {
+/* .whatsapp-float:hover {
   transform: translateY(-4px);
   box-shadow: 0 18px 35px rgba(37, 211, 102, 0.45);
-}
+} */
 
 /* Mobile spacing */
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
   .whatsapp-float {
     bottom: 18px;
     right: 18px;
     width: 52px;
     height: 52px;
   }
+} */
+
+
+/* =====================
+   FLOATING CONTACT STACK
+===================== */
+.floating-contact {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  z-index: 9999;
+}
+
+/* Common button style */
+.float-btn {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  text-decoration: none;
+  color: #ffffff;
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effect */
+.float-btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 35px rgba(0, 0, 0, 0.35);
+}
+
+/* WhatsApp */
+.whatsapp-btn {
+  background: #25D366;
+}
+
+.whatsapp-btn img {
+  width: 28px;
+  height: 28px;
+}
+
+/* Call */
+.call-btn {
+  background: #2563eb;
+}
+
+/* Mail */
+.mail-btn {
+  background: #0f172a;
+}
+
+/* Mobile size adjust */
+@media (max-width: 768px) {
+  .float-btn {
+    width: 52px;
+    height: 52px;
+    font-size: 20px;
+  }
+}
+.mail-btn img {
+  width: 26px;
+  height: 26px;
+}
+
+/* Mail */
+.mail-btn {
+  background: #ffffff;          /* white background */
+  border: 1px solid #e2e8f0;    /* light border */
+}
+
+.mail-btn img {
+  width: 26px;
+  height: 26px;
+}
+
+/* Call */
+.call-btn {
+  background: #ffffff;          /* white background */
+  border: 1px solid #e2e8f0;    /* soft border */
+}
+
+.call-btn img {
+  width: 24px;
+  height: 24px;
 }
