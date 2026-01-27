@@ -801,7 +801,7 @@ body.no-scroll {
    LOGO IMAGE FIX (ALL BROWSERS)
 ===================== */
 .logo img {
-  height: 100px;        /* desktop size */
+  height: 150px;        /* desktop size */
   width: auto;
   display: block;      /* 🔑 Vivo browser fix */
 }
@@ -809,7 +809,7 @@ body.no-scroll {
 /* Mobile logo size */
 @media (max-width: 768px) {
   .logo img {
-    height: 100px;
+    height: 150px;
   }
 }
 
@@ -980,4 +980,37 @@ body.no-scroll {
   .team-card {
     padding: 24px 20px;
   }
+}
+
+/* ==========================
+   HEADER DEFAULT (BEFORE SCROLL)
+========================== */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: #ffffff;
+  transition: all 0.3s ease;
+}
+
+.header-flex {
+  min-height: 96px;              /* 🔑 BIG height */
+  transition: min-height 0.3s ease;
+}
+
+/* Logo size - default */
+.logo img {
+  max-height: 150px;              /* 🔑 BIG logo */
+  transition: max-height 0.3s ease;
+}
+
+/* ==========================
+   HEADER AFTER SCROLL
+========================== */
+.header.scrolled .header-flex {
+  min-height: 70px;              /* 🔽 height reduce */
+}
+
+.header.scrolled .logo img {
+  max-height: 80px;              /* 🔽 logo shrink */
 }

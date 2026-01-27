@@ -316,3 +316,51 @@
     padding-top: 10px;
   }
 }
+
+.mobile-company-name {
+  display: none;
+}
+
+/* ==========================
+   MOBILE / TABLET HEADER LAYOUT
+========================== */
+.mobile-company-name {
+  display: none;
+}
+
+@media (max-width: 1024px) {
+
+  .header-flex {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 10px;
+  }
+
+  /* Logo - LEFT */
+  .logo {
+    justify-self: start;
+  }
+
+  /* Company Name - CENTER */
+  .mobile-company-name {
+    display: block;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+    color: #0f172a;
+    letter-spacing: 0.4px;
+    white-space: nowrap;
+  }
+
+  /* Menu Toggle - RIGHT */
+  .menu-toggle {
+    justify-self: end;
+    font-size: 22px;
+  }
+}
+@media (max-width: 480px) {
+  .mobile-company-name {
+    font-size: 14px;
+  }
+}
