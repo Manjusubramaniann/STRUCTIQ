@@ -1,12 +1,13 @@
 const express = require("express");
 const cors = require("cors");
-const nodemailer = require("nodemailer");
 require("dotenv").config();
+const { Resend } = require("resend");
 
 const app = express();
-
 app.use(cors());
 app.use(express.json());
+
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 app.get("/", (req, res) => {
   res.send("STRUCTIQ Mail Server is running");
@@ -16,17 +17,10 @@ app.post("/send-mail", async (req, res) => {
   const { name, phone, email, message } = req.body;
 
   try {
-    const transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS
-      }
-    });
-
-    await transporter.sendMail({
-      from: email, // user email
-      to: process.env.EMAIL_USER, // your mail
+    await resend.emails.send({
+      from: "STRUCTIQ <onboarding@resend.dev>", // default sender
+      to: ["er.sksamy@gmail.com"], // YOUR mail
+      reply_to: email, // USER email
       subject: "New Contact Enquiry - STRUCTIQ",
       text: `
 Name: ${name}
