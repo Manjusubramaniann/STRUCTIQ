@@ -281,5 +281,6 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
+
 window.addEventListener("scroll", revealOnScroll);
 window.addEventListener("load", revealOnScroll);
