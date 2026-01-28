@@ -1250,144 +1250,54 @@ body.no-scroll {
     font-size: 28px;
   }
 }
-/* =========================
-   MOBILE PERFORMANCE FIX
-========================= */
-@media (max-width: 768px) {
+/* =========================================
+   SERVICES PAGE – FORCE IMAGE DARKEN FIX
+   (OVERRIDES ALL PREVIOUS HERO RULES)
+========================================= */
 
-  /* Disable heavy animations */
-  .hero-bg {
-    animation: none !important;
-    filter: none !important;
-    transform: none !important;
-    opacity: 1 !important;
-  }
-
-  /* Force first image visible immediately */
-  .hero-bg:not(.active) {
-    display: none;
-  }
-
-  /* Lighter overlay (no GPU stress) */
-  .hero-bg-slider::after {
-    background: rgba(0,0,0,0.65);
-  }
-
-  /* Improve text clarity */
-  .page-hero h1 {
-    font-size: 26px;
-  }
-
-  .page-hero p {
-    font-size: 14px;
-  }
-}
-.page-hero {
-  background-color: #0f172a; /* fallback background */
-}
-/* =========================
-   HOME SLIDER – MOBILE TEXT FIX
-========================= */
-@media (max-width: 768px) {
-
-  /* Each slide becomes flex container */
-  .slides {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-  }
-
-  /* HARD RESET hero text inside slides */
-  .slides .hero-text {
-    position: relative !important;
-    top: auto !important;
-    left: auto !important;
-    transform: none !important;
-
-    width: 100% !important;
-    max-width: 100% !important;
-
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    justify-content: center !important;
-
-    text-align: center !important;
-    padding: 0 20px !important;
-    box-sizing: border-box !important;
-
-    z-index: 3 !important;
-  }
-
-  /* Heading fix */
-  .slides .hero-text h1 {
-    font-size: 28px !important;
-    line-height: 1.2 !important;
-    margin: 0 0 12px 0 !important;
-
-    white-space: normal !important;
-    word-break: break-word !important;
-  }
-
-  /* Paragraph fix */
-  .slides .hero-text p {
-    font-size: 14px !important;
-    line-height: 1.4 !important;
-    margin: 0 !important;
-    max-width: 90% !important;
-  }
-
+/* Dark overlay ONLY for services hero */
+body.services-page .page-hero.hero-bg-slider::after {
+  background: rgba(0, 0, 0, 0.65) !important;
 }
 
-/* =========================
-   PAGE HERO – DARK BACKGROUND FIX
-========================= */
-
-.hero-bg-slider {
-  position: relative;
-  overflow: hidden;
-}
-
-/* Strong dark overlay */
-.hero-bg-slider::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.75); /* 🔥 black shade */
-  z-index: 1;
-}
-
-/* Ensure background image stays behind */
-.hero-bg {
-  z-index: 0;
-}
-
-/* Text always on top */
-.hero-content {
-  position: relative;
-  z-index: 2;
-  text-align: center;
-}
-
-/* Heading & text color */
-.page-hero h1 {
-  color: #fbbf24; /* gold */
-}
-
-.page-hero p {
-  color: rgba(255, 255, 255, 0.9);
+/* Reduce image brightness ONLY for services */
+body.services-page .page-hero .hero-bg {
+  opacity: 0.7 !important;          /* 🔥 MAIN FIX */
+  filter: none !important;          /* remove blur conflict */
+  transform: none !important;
 }
 @media (max-width: 768px) {
-  .hero-bg-slider::after {
-    background: rgba(0, 0, 0, 0.8);
-  }
-}
-@media (max-width: 768px) {
-  .page-hero.hero-bg-slider::after {
-    background: rgba(0, 0, 0, 0.6);
+  body.services-page .page-hero.hero-bg-slider::after {
+    background: rgba(0, 0, 0, 0.7) !important;
   }
 
-  .page-hero .hero-bg {
-    opacity: 0.8;
+  body.services-page .page-hero .hero-bg {
+    opacity: 0.65 !important;
+  }
+}
+/* =========================================
+   SERVICES HERO – IMAGE STACK FIX (FINAL)
+========================================= */
+
+/* Hide ALL images by default */
+body.services-page .page-hero .hero-bg {
+  display: none !important;
+  opacity: 0.4 !important;
+  filter: blur(2px);
+  transform: scale(1.05);
+}
+
+/* Show ONLY active image */
+body.services-page .page-hero .hero-bg.active {
+  display: block !important;
+}
+
+/* Soft black shade (same as home feel) */
+body.services-page .page-hero.hero-bg-slider::after {
+  background: rgba(0, 0, 0, 0.6) !important;
+}
+@media (max-width: 768px) {
+  body.services-page .page-hero .hero-bg {
+    filter: blur(1.5px);
   }
 }
