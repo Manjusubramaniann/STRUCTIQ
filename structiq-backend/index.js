@@ -17,10 +17,10 @@ app.post("/send-mail", async (req, res) => {
   const { name, phone, email, message } = req.body;
 
   try {
-    await resend.emails.send({
-      from: "STRUCTIQ <onboarding@resend.dev>", // default sender
-      to: ["er.sksamy@gmail.com"], // YOUR mail
-      reply_to: email, // USER email
+    const result = await resend.emails.send({
+      from: "STRUCTIQ <no-reply@resend.dev>",
+      to: ["er.sksamy@gmail.com"],       // YOUR MAIL
+      reply_to: email,                  // USER MAIL
       subject: "New Contact Enquiry - STRUCTIQ",
       text: `
 Name: ${name}
@@ -32,6 +32,8 @@ ${message}
       `
     });
 
+    console.log("Resend response:", result);
+
     res.status(200).json({ message: "Mail sent successfully" });
 
   } catch (error) {
@@ -39,6 +41,7 @@ ${message}
     res.status(500).json({ message: "Mail sending failed" });
   }
 });
+
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
