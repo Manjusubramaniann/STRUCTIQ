@@ -1285,3 +1285,56 @@ body.no-scroll {
 .page-hero {
   background-color: #0f172a; /* fallback background */
 }
+/* =========================
+   HOME SLIDER – MOBILE TEXT FIX
+========================= */
+@media (max-width: 768px) {
+
+  /* Each slide becomes flex container */
+  .slides {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  /* HARD RESET hero text inside slides */
+  .slides .hero-text {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    transform: none !important;
+
+    width: 100% !important;
+    max-width: 100% !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    text-align: center !important;
+    padding: 0 20px !important;
+    box-sizing: border-box !important;
+
+    z-index: 3 !important;
+  }
+
+  /* Heading fix */
+  .slides .hero-text h1 {
+    font-size: 28px !important;
+    line-height: 1.2 !important;
+    margin: 0 0 12px 0 !important;
+
+    white-space: normal !important;
+    word-break: break-word !important;
+  }
+
+  /* Paragraph fix */
+  .slides .hero-text p {
+    font-size: 14px !important;
+    line-height: 1.4 !important;
+    margin: 0 !important;
+    max-width: 90% !important;
+  }
+
+}
