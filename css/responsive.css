@@ -369,3 +369,44 @@
     background-attachment: scroll;
   }
 }
+@media (max-width: 768px) {
+
+  .hero-text,
+  .hero-content {
+    width: 100%;
+    max-width: 100%;
+    overflow: visible;
+    padding-right: 16px;
+    padding-left: 16px;
+    box-sizing: border-box;
+  }
+
+}
+@media (max-width: 768px) {
+
+  .hero-text h1,
+  .hero-content h1 {
+    font-size: 26px;
+    line-height: 1.25;
+    white-space: normal;      /* 🔑 important */
+    word-break: break-word;   /* safety */
+  }
+
+}
+@media (max-width: 768px) {
+
+  .hero-text,
+  .hero-content {
+    text-align: center;
+  }
+
+}
+@media (max-width: 768px) {
+
+  .hero-slider,
+  .page-hero {
+    min-height: 260px;
+    height: auto;
+  }
+
+}
