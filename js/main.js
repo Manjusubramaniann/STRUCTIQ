@@ -236,5 +236,50 @@ if (pageHeroImages.length > 0) {
 }
 
 
+/* =========================
+   FLOATING CONTACT – IDLE LOGIC (FINAL)
+========================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  const floatingContact = document.querySelector(".floating-contact");
+  if (!floatingContact) return;
+
+  let idleTimer = null;
+  const IDLE_TIME = 5500; // 5.5 seconds
+
+  function showIcons() {
+    floatingContact.style.opacity = "1";
+    floatingContact.style.pointerEvents = "auto";
+    floatingContact.style.transform = "translateY(0)";
+    resetIdleTimer();
+  }
+
+  function hideIcons() {
+    floatingContact.style.opacity = "0";
+    floatingContact.style.pointerEvents = "none";
+    floatingContact.style.transform = "translateY(20px)";
+  }
+
+  function resetIdleTimer() {
+    clearTimeout(idleTimer);
+    idleTimer = setTimeout(() => {
+      hideIcons();
+    }, IDLE_TIME);
+  }
+
+  /* Show once page loads */
+  showIcons();
+
+  /* User activity resets timer */
+  ["click", "scroll", "touchstart"].forEach(event => {
+    window.addEventListener(event, () => {
+      showIcons();
+    }, { passive: true });
+  });
+
+});
+
+
 window.addEventListener("scroll", revealOnScroll);
 window.addEventListener("load", revealOnScroll);

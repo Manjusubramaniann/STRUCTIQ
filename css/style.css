@@ -1301,3 +1301,7 @@ body.services-page .page-hero.hero-bg-slider::after {
     filter: blur(1.5px);
   }
 }
+
+.floating-contact {
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
