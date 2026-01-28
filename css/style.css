@@ -1250,3 +1250,38 @@ body.no-scroll {
     font-size: 28px;
   }
 }
+/* =========================
+   MOBILE PERFORMANCE FIX
+========================= */
+@media (max-width: 768px) {
+
+  /* Disable heavy animations */
+  .hero-bg {
+    animation: none !important;
+    filter: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+
+  /* Force first image visible immediately */
+  .hero-bg:not(.active) {
+    display: none;
+  }
+
+  /* Lighter overlay (no GPU stress) */
+  .hero-bg-slider::after {
+    background: rgba(0,0,0,0.65);
+  }
+
+  /* Improve text clarity */
+  .page-hero h1 {
+    font-size: 26px;
+  }
+
+  .page-hero p {
+    font-size: 14px;
+  }
+}
+.page-hero {
+  background-color: #0f172a; /* fallback background */
+}

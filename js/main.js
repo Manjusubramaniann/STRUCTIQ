@@ -214,6 +214,27 @@ if (pageHeroImages.length > 0) {
   }, 5000); // 5 seconds
 }
 
+// const pageHeroImages = document.querySelectorAll(".hero-bg");
+
+if (pageHeroImages.length > 0) {
+
+  // Mobile detection
+  const isMobile = window.innerWidth <= 768;
+
+  // Always show first image immediately
+  pageHeroImages[0].classList.add("active");
+
+  if (!isMobile) {
+    let heroIndex = 0;
+
+    setInterval(() => {
+      pageHeroImages[heroIndex].classList.remove("active");
+      heroIndex = (heroIndex + 1) % pageHeroImages.length;
+      pageHeroImages[heroIndex].classList.add("active");
+    }, 5000);
+  }
+}
+
 
 window.addEventListener("scroll", revealOnScroll);
 window.addEventListener("load", revealOnScroll);
