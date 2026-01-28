@@ -1014,3 +1014,239 @@ body.no-scroll {
 .header.scrolled .logo img {
   max-height: 80px;              /* 🔽 logo shrink */
 }
+
+.hero-slider {
+  position: relative;
+  height: 85vh;
+  overflow: hidden;
+}
+
+.slides {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 1.2s ease-in-out;
+}
+
+.slides.active {
+  opacity: 1;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(0,0,0,0.75),
+    rgba(0,0,0,0.35)
+  );
+}
+
+.hero-text {
+  position: absolute;
+  top: 50%;
+  left: 8%;
+  transform: translateY(-50%);
+  color: #fff;
+  max-width: 600px;
+}
+
+.hero-text h1 {
+  font-size: 48px;
+  margin-bottom: 12px;
+  color: #fbbf24; /* yellow accent */
+}
+
+.hero-text p {
+  font-size: 18px;
+}
+
+.slides {
+  transform: scale(1);
+  animation: slowZoom 12s linear infinite;
+}
+
+@keyframes slowZoom {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.08);
+  }
+}
+.hero-slider::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -60%;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 200, 80, 0.25),
+    transparent
+  );
+  animation: lightSweep 6s infinite;
+}
+
+@keyframes lightSweep {
+  0% { left: -60%; }
+  100% { left: 120%; }
+}
+.hero-text h1,
+.hero-text p {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: textReveal 1.2s ease forwards;
+}
+
+.hero-text p {
+  animation-delay: 0.3s;
+}
+
+@keyframes textReveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.slides.active {
+  animation: slowZoom 12s linear infinite,
+             microShake 8s ease-in-out infinite;
+}
+
+@keyframes microShake {
+  0% { transform: scale(1.04) translate(0,0); }
+  50% { transform: scale(1.04) translate(2px,1px); }
+  100% { transform: scale(1.04) translate(0,0); }
+}
+/* SCROLL REVEAL BASE */
+[data-scroll] {
+  opacity: 0;
+  transform: translateY(60px);
+  transition: all 1s ease;
+}
+
+/* WHEN ACTIVE */
+[data-scroll].active {
+  opacity: 1;
+  transform: translateY(0);
+}
+.parallax {
+  background-attachment: fixed;
+  background-position: center;
+}
+.hero-text {
+  position: relative;
+  z-index: 2;
+}
+/* =========================
+   PAGE HERO BACKGROUND SLIDER
+========================= */
+
+.hero-bg-slider {
+  position: relative;
+  height: 360px;
+  overflow: hidden;
+  background: #000;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transform: scale(1);
+  transition: opacity 1.5s ease;
+  animation: slowZoom 12s linear infinite;
+}
+
+.hero-bg.active {
+  opacity: 1;
+}
+
+/* reuse cinematic zoom (already used in home) */
+@keyframes slowZoom {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.08);
+  }
+}
+
+/* dark overlay – same professional look */
+.hero-bg-slider::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    rgba(0,0,0,0.65),
+    rgba(0,0,0,0.65)
+  );
+  z-index: 1;
+}
+
+/* text stays above */
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding-top: 110px;
+  color: #fff;
+}
+
+/* text reveal – already style match */
+.hero-content h1,
+.hero-content p {
+  animation: textReveal 1.2s ease forwards;
+}
+
+@keyframes textReveal {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.hero-bg {
+  filter: blur(3px);
+  transform: scale(1.12);
+}
+.hero-bg-slider::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    rgba(0,0,0,0.75),
+    rgba(0,0,0,0.75)
+  );
+  z-index: 1;
+}
+.page-hero h1 {
+  color: #fbbf24; /* professional gold */
+  font-weight: 700;
+}
+.page-hero p {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 16px;
+}
+.hero-content {
+  text-shadow: 0 8px 30px rgba(0,0,0,0.6);
+}
+@media (max-width: 768px) {
+  .hero-bg {
+    filter: blur(2px);
+  }
+
+  .page-hero h1 {
+    font-size: 28px;
+  }
+}

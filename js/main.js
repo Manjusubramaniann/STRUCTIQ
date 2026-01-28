@@ -165,6 +165,55 @@ window.addEventListener('scroll', () => {
   }
 });
 
+const slides = document.querySelectorAll(".slides");
+let index = 0;
+
+setInterval(() => {
+  slides[index].classList.remove("active");
+  index = (index + 1) % slides.length;
+  slides[index].classList.add("active");
+}, 5000); // 5 seconds
+
+
+const scrollElements = document.querySelectorAll("[data-scroll]");
+
+const scrollReveal = () => {
+  const triggerPoint = window.innerHeight - 120;
+
+  scrollElements.forEach(el => {
+    const top = el.getBoundingClientRect().top;
+
+    if (top < triggerPoint) {
+      el.classList.add("active");
+    }
+  });
+};
+
+window.addEventListener("scroll", scrollReveal);
+scrollReveal(); // on load
+
+const parallaxSlides = document.querySelectorAll(".slides");
+
+window.addEventListener("scroll", () => {
+  const scrollTop = window.pageYOffset;
+
+  parallaxSlides.forEach(slide => {
+    slide.style.transform =
+      `translateY(${scrollTop * 0.25}px) scale(1.08)`;
+  });
+});
+
+const pageHeroImages = document.querySelectorAll(".hero-bg");
+let heroIndex = 0;
+
+if (pageHeroImages.length > 0) {
+  setInterval(() => {
+    pageHeroImages[heroIndex].classList.remove("active");
+    heroIndex = (heroIndex + 1) % pageHeroImages.length;
+    pageHeroImages[heroIndex].classList.add("active");
+  }, 5000); // 5 seconds
+}
+
 
 window.addEventListener("scroll", revealOnScroll);
 window.addEventListener("load", revealOnScroll);
