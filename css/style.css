@@ -1382,30 +1382,12 @@ body.no-scroll {
     background: rgba(0, 0, 0, 0.8);
   }
 }
-/* =========================
-   PAGE HERO – LIGHT BLACK SHADE
-========================= */
-
-.hero-bg-slider::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.55); /* 🔽 opacity kammi */
-  z-index: 1;
-}
-
-/* Background images stay normal */
-.hero-bg {
-  z-index: 0;
-}
-
-/* Text always clear */
-.hero-content {
-  position: relative;
-  z-index: 2;
-}
 @media (max-width: 768px) {
-  .hero-bg-slider::after {
-    background: rgba(0, 0, 0, 0.65);
+  .page-hero.hero-bg-slider::after {
+    background: rgba(0, 0, 0, 0.6);
+  }
+
+  .page-hero .hero-bg {
+    opacity: 0.8;
   }
 }
