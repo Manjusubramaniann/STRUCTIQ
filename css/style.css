@@ -1416,3 +1416,26 @@ body.services-page .page-hero.hero-bg-slider::after {
   top: 7.5px;
   transform: rotate(-45deg);
 }
+.header {
+  position: relative;
+  overflow: visible; /* 🔥 THIS IS KEY */
+  z-index: 1000;
+}
+.menu-toggle {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block !important;
+    position: fixed; /* 🔥 strongest */
+    top: 16px;
+    right: 16px;
+    z-index: 9999; /* 🔥 above everything */
+  }
+}
+.menu-lines {
+  width: 22px;
+  height: 18px;
+}
+  
