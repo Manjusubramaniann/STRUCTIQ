@@ -1353,3 +1353,21 @@ body.services-page .page-hero.hero-bg-slider::after {
   border-radius: 6px;
   cursor: pointer;
 }
+/* =========================
+   PAGE LOAD ANIMATION
+========================= */
+
+/* Initial hidden state */
+.page-animate {
+  opacity: 0;
+  transform: translateY(20px) scale(0.98);
+  animation: pageEnter 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* Animation keyframes */
+@keyframes pageEnter {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

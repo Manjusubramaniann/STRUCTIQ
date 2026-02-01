@@ -315,6 +315,13 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 });
+window.addEventListener("load", () => {
+  const loader = document.getElementById("page-loader");
+
+  setTimeout(() => {
+    loader.remove();
+  }, 1200); // animation complete
+});
 
 
 
