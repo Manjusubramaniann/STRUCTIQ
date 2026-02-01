@@ -1403,3 +1403,103 @@ body.services-page .page-hero.hero-bg-slider::after {
 body.splash-active {
   overflow: hidden;
 }
+/* =========================
+   SERVICES PREVIEW – PREMIUM DESIGN
+========================= */
+.services-preview {
+  padding: 80px 0;
+  background: linear-gradient(
+    180deg,
+    #f8fafc 0%,
+    #ffffff 100%
+  );
+}
+
+.services-preview h2 {
+  text-align: center;
+  font-size: 36px;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 10px;
+  margin-top: -120px;
+}
+
+.services-preview h4 {
+  font-size: 18px;
+  font-weight: 500;
+  color: #2563eb;
+  letter-spacing: 0.3px;
+}
+
+.service-grid {
+  margin-top: 50px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 28px;
+}
+
+/* SERVICE CARD */
+.service-card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 28px 22px;
+  text-align: center;
+
+  font-size: 17px;
+  font-weight: 600;
+  color: #0f172a;
+
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
+
+  cursor: default;
+  position: relative;
+  overflow: hidden;
+
+  transition: all 0.35s ease;
+}
+
+/* subtle top accent line */
+.service-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 4px;
+  width: 100%;
+  background: linear-gradient(
+    90deg,
+    #2563eb,
+    #38bdf8
+  );
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+/* HOVER EFFECT */
+.service-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.12);
+  border-color: #c7d2fe;
+}
+
+.service-card:hover::before {
+  opacity: 1;
+}
+
+/* MOBILE OPTIMIZATION */
+@media (max-width: 768px) {
+  .services-preview {
+    padding: 60px 0;
+  }
+
+  .services-preview h2 {
+    
+    font-size: 28px;
+  }
+
+  .service-card {
+    font-size: 16px;
+    padding: 24px 18px;
+  }
+}
