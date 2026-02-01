@@ -1371,3 +1371,36 @@ body.services-page .page-hero.hero-bg-slider::after {
     transform: translateY(0);
   }
 }
+#splash {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 100vw;
+  height: 100vh;          /* 🔥 FULL SCREEN */
+
+  background: linear-gradient(
+    135deg,
+    #f8fafc,
+    #e0e7ff
+  );
+
+  z-index: 999999;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#splash img {
+  width: 220px;
+}
+
+/* =====================
+   SPLASH OVERRIDE FIX
+===================== */
+
+body.splash-active {
+  padding-top: 0 !important;
+  overflow: hidden !important; /* 🔥 NO SCROLL */
+}
