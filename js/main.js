@@ -216,14 +216,26 @@ scrollReveal(); // on load
 
 const parallaxSlides = document.querySelectorAll(".slides");
 
-window.addEventListener("scroll", () => {
-  const scrollTop = window.pageYOffset;
+// window.addEventListener("scroll", () => {
+//   const scrollTop = window.pageYOffset;
 
-  parallaxSlides.forEach(slide => {
-    slide.style.transform =
-      `translateY(${scrollTop * 0.25}px) scale(1.08)`;
+//   parallaxSlides.forEach(slide => {
+//     slide.style.transform =
+//       `translateY(${scrollTop * 0.25}px) scale(1.08)`;
+//   });
+// });
+
+if (!isMobile) {
+  window.addEventListener("scroll", () => {
+    const scrollTop = window.pageYOffset;
+
+    parallaxSlides.forEach(slide => {
+      slide.style.transform =
+        `translateY(${scrollTop * 0.25}px) scale(1.08)`;
+    });
   });
-});
+}
+
 
 const pageHeroImages = document.querySelectorAll(".hero-bg");
 let heroIndex = 0;
