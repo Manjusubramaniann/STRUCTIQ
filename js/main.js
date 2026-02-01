@@ -62,6 +62,8 @@
 
 const menuToggle = document.querySelector(".menu-toggle");
 const nav = document.querySelector(".nav");
+const isMobile = window.innerWidth <= 768;
+
 
 /* Toggle menu */
 menuToggle.addEventListener("click", (e) => {
