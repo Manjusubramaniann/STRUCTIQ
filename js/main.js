@@ -157,13 +157,24 @@ document.addEventListener("click", (e) => {
 // Header shrink on scroll
 // const header = document.querySelector('.header');
 
-window.addEventListener('scroll', () => {
-  if (window.scrollY > 50) {
-    header.classList.add('scrolled');
+// window.addEventListener('scroll', () => {
+//   if (window.scrollY > 50) {
+//     header.classList.add('scrolled');
+//   } else {
+//     header.classList.remove('scrolled');
+//   }
+// });
+
+// const header = document.querySelector(".header");
+
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 60) {
+    header.style.boxShadow = "0 4px 20px rgba(0,0,0,0.08)";
   } else {
-    header.classList.remove('scrolled');
+    header.style.boxShadow = "none";
   }
 });
+
 
 const slides = document.querySelectorAll(".slides");
 let index = 0;
