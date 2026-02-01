@@ -64,6 +64,7 @@ const menuToggle = document.querySelector(".menu-toggle");
 const nav = document.querySelector(".nav");
 const isMobile = window.innerWidth <= 768;
 let splashRunning = true;
+const isHomePage = window.location.pathname.endsWith("index.html") || window.location.pathname === "/";
 
 
 /* Toggle menu */
@@ -337,10 +338,23 @@ window.addEventListener("load", () => {
   }, 1200); // animation complete
 });
 
+//splash screen
+
 window.addEventListener("load", () => {
   const splash = document.getElementById("splash");
 
-  // lock scroll + effects
+  // ❌ Not homepage OR already shown → remove splash immediately
+  if (!isHomePage || sessionStorage.getItem("splashShown")) {
+    if (splash) splash.remove();
+    splashRunning = false;
+    document.body.classList.remove("splash-active");
+    document.body.style.overflow = ""; // 🔥 enable scroll
+    return;
+  }
+
+  // ✅ First time on index page
+  sessionStorage.setItem("splashShown", "true");
+
   document.body.classList.add("splash-active");
   splashRunning = true;
 
@@ -351,10 +365,12 @@ window.addEventListener("load", () => {
     setTimeout(() => {
       splash.remove();
       document.body.classList.remove("splash-active");
-      splashRunning = false; // 🔓 enable effects
+      document.body.style.overflow = ""; // 🔥 enable scroll
+      splashRunning = false;
     }, 600);
   }, 3000);
 });
+
 
 window.addEventListener("scroll", revealOnScroll);
 window.addEventListener("load", revealOnScroll);

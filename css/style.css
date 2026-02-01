@@ -1401,6 +1401,5 @@ body.services-page .page-hero.hero-bg-slider::after {
 ===================== */
 
 body.splash-active {
-  padding-top: 0 !important;
-  overflow: hidden !important; /* 🔥 NO SCROLL */
+  overflow: hidden;
 }
