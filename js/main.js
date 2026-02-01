@@ -64,7 +64,11 @@ const menuToggle = document.querySelector(".menu-toggle");
 const nav = document.querySelector(".nav");
 const isMobile = window.innerWidth <= 768;
 let splashRunning = true;
-const isHomePage = window.location.pathname.endsWith("index.html") || window.location.pathname === "/";
+// const isHomePage = window.location.pathname.endsWith("index.html") || window.location.pathname === "/";
+
+const isHomePage =
+  window.location.pathname.endsWith("/STRUCTIQ/") ||
+  window.location.pathname.endsWith("/STRUCTIQ/index.html");
 
 
 /* Toggle menu */
