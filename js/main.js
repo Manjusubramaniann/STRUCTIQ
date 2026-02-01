@@ -113,15 +113,26 @@ function closeMenu() {
 /* =========================
    STICKY HEADER EFFECT
 ========================= */
+// const header = document.querySelector(".header");
+
+// window.addEventListener("scroll", () => {
+//     if (window.scrollY > 60) {
+//         header.style.boxShadow = "0 4px 20px rgba(0,0,0,0.08)";
+//     } else {
+//         header.style.boxShadow = "none";
+//     }
+// });
 const header = document.querySelector(".header");
 
-window.addEventListener("scroll", () => {
+if (!isMobile) {
+  window.addEventListener("scroll", () => {
     if (window.scrollY > 60) {
-        header.style.boxShadow = "0 4px 20px rgba(0,0,0,0.08)";
+      header.style.boxShadow = "0 4px 20px rgba(0,0,0,0.08)";
     } else {
-        header.style.boxShadow = "none";
+      header.style.boxShadow = "none";
     }
-});
+  });
+}
 
 
 /* =========================
