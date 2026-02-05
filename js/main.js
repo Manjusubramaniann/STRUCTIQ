@@ -397,15 +397,15 @@ let zoomLevel = 1;
 let currentPDF = "";
 
 function openPDF(file){
-    currentPDF = file;
-    zoomLevel = 1;
 
     document.getElementById("pdfModal").style.display="block";
 
-    const frame = document.getElementById("pdfFrame");
-    frame.src = file + "#toolbar=0&navpanes=0&scrollbar=0";
-    frame.style.transform = "scale(1)";
+    // Force browser inline viewing (mobile redirect avoid)
+    document.getElementById("pdfFrame").src =
+        file + "#toolbar=0&navpanes=0&scrollbar=0&view=FitH";
+
 }
+
 
 function zoomIn(){
     zoomLevel += 0.1;
