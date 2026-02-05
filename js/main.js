@@ -375,6 +375,55 @@ window.addEventListener("load", () => {
   }, 3000);
 });
 
+//pdf samples
+function openPDF(file){
+    document.getElementById("pdfModal").style.display="block";
+
+    document.getElementById("pdfFrame").src =
+    file + "#toolbar=0&navpanes=0&scrollbar=0";
+}
+
+function closePDF(){
+    document.getElementById("pdfModal").style.display="none";
+    document.getElementById("pdfFrame").src="";
+}
+
+/* Right click disable */
+document.addEventListener("contextmenu", function(e){
+    e.preventDefault();
+});
+
+let zoomLevel = 1;
+let currentPDF = "";
+
+function openPDF(file){
+    currentPDF = file;
+    zoomLevel = 1;
+
+    document.getElementById("pdfModal").style.display="block";
+
+    const frame = document.getElementById("pdfFrame");
+    frame.src = file + "#toolbar=0&navpanes=0&scrollbar=0";
+    frame.style.transform = "scale(1)";
+}
+
+function zoomIn(){
+    zoomLevel += 0.1;
+    applyZoom();
+}
+
+function zoomOut(){
+    zoomLevel -= 0.1;
+    if(zoomLevel < 0.5) zoomLevel = 0.5;
+    applyZoom();
+}
+
+function applyZoom(){
+    const frame = document.getElementById("pdfFrame");
+    frame.style.transform = "scale(" + zoomLevel + ")";
+}
+
+
 
 window.addEventListener("scroll", revealOnScroll);
 window.addEventListener("load", revealOnScroll);

@@ -69,11 +69,89 @@
         </div>
     </section>
 
-<center><br><br><br><br><br><br>
+    <!-- ================= SAMPLE PDF VIEW ================= -->
+<section class="page-content">
+    <div class="container">
+
+        <div class="service-grid">
+
+            <div class="service-card premium-card">
+                <h3>Project Sample 1</h3>
+                <button onclick="openPDF('pdf/sample1.pdf')">View PDF</button>
+            </div>
+
+            <div class="service-card premium-card">
+                <h3>Project Sample 2</h3>
+                <button onclick="openPDF('pdf/111.pdf')">View PDF</button>
+            </div>
+
+            <div class="service-card premium-card">
+                <h3>Project Sample 3</h3>
+                <button onclick="openPDF('pdf/sample3.pdf')">View PDF</button>
+            </div>
+
+            <div class="service-card premium-card">
+                <h3>Project Sample 4</h3>
+                <button onclick="openPDF('pdf/sample4.pdf')">View PDF</button>
+            </div>
+
+            <div class="service-card premium-card">
+                <h3>Project Sample 5</h3>
+                <button onclick="openPDF('pdf/sample5.pdf')">View PDF</button>
+            </div>
+
+            <div class="service-card premium-card">
+                <h3>Project Sample 6</h3>
+                <button onclick="openPDF('pdf/sample6.pdf')">View PDF</button>
+            </div>
+
+            <div class="service-card premium-card">
+                <h3>Project Sample 7</h3>
+                <button onclick="openPDF('pdf/sample7.pdf')">View PDF</button>
+            </div>
+
+            <div class="service-card premium-card">
+                <h3>Project Sample 8</h3>
+                <button onclick="openPDF('pdf/sample8.pdf')">View PDF</button>
+            </div>
+
+            <div class="service-card premium-card">
+                <h3>Project Sample 9</h3>
+                <button onclick="openPDF('pdf/sample9.pdf')">View PDF</button>
+            </div>
+
+            <div class="service-card premium-card">
+                <h3>Project Sample 10</h3>
+                <button onclick="openPDF('pdf/sample10.pdf')">View PDF</button>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+<!-- PDF Viewer Modal -->
+<div id="pdfModal" class="pdf-modal">
+
+    <span class="close-pdf" onclick="closePDF()">×</span>
+
+    <div class="pdf-controls">
+    <button onclick="zoomOut()">−</button>
+    <button onclick="zoomIn()">+</button>
+</div>
+
+
+    <div class="pdf-frame-wrapper">
+        <iframe id="pdfFrame"></iframe>
+    </div>
+
+</div>
+
+
+<!-- <center><br><br><br><br><br><br>
     <h1>Comming Soon !</h4> 
     <h4>This page on developing</h2>
     <br><br><br><br><br>
-</center>
+</center> -->
     <!-- ================= SAMPLE CONTENT =================
     <section class="page-content" data-scroll>
         <div class="container">
