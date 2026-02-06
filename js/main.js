@@ -64,6 +64,9 @@ const menuToggle = document.querySelector(".menu-toggle");
 const nav = document.querySelector(".nav");
 const isMobile = window.innerWidth <= 768;
 let splashRunning = true;
+let zoomLevel = 1.2;
+let currentPDF = "";
+
 // const isHomePage = window.location.pathname.endsWith("index.html") || window.location.pathname === "/";
 
 const isHomePage =
@@ -85,9 +88,14 @@ document.addEventListener("click", () => {
 });
 
 /* Prevent nav clicks from closing */
-nav.addEventListener("click", (e) => {
-  e.stopPropagation();
-});
+// nav.addEventListener("click", (e) => {
+//   e.stopPropagation();
+// });
+if(nav){
+  nav.addEventListener("click", (e) => {
+    e.stopPropagation();
+  });
+}
 
 /* Close menu on nav link click */
 document.querySelectorAll(".nav a").forEach(link => {
@@ -388,14 +396,20 @@ function openPDF(file){
 //     document.getElementById("pdfFrame").src="";
 // }
 
-function closePDF(){
-    document.getElementById("pdfModal").style.display="none";
-    document.getElementById("pdfFrame").src="";
+// function closePDF(){
+//     document.getElementById("pdfModal").style.display="none";
+//     document.getElementById("pdfFrame").src="";
 
-    /* show icons back */
-    const floating = document.querySelector(".floating-contact");
-    if (floating){
-        floating.classList.remove("hide-floating");
+//     /* show icons back */
+//     const floating = document.querySelector(".floating-contact");
+//     if (floating){
+//         floating.classList.remove("hide-floating");
+//     }
+// }
+function closePDF(){
+    const modal = document.getElementById("pdfModal");
+    if(modal){
+        modal.style.display="none";
     }
 }
 
@@ -404,26 +418,37 @@ document.addEventListener("contextmenu", function(e){
     e.preventDefault();
 });
 
-let zoomLevel = 1;
-let currentPDF = "";
+
+
+
+// function openPDF(file){
+//     currentPDF = file;
+//     zoomLevel = 1;
+
+//     /* hide icons */
+//     const floating = document.querySelector(".floating-contact");
+//     if (floating){
+//         floating.classList.add("hide-floating");
+//     }
+
+//     document.getElementById("pdfModal").style.display="block";
+
+//     const frame = document.getElementById("pdfFrame");
+//     frame.src = file + "#toolbar=0&navpanes=0&scrollbar=0";
+//     frame.style.transform = "scale(1)";
+// }
 
 function openPDF(file){
+
     currentPDF = file;
-    zoomLevel = 1;
+    pageNum = 1;
 
-    /* hide icons */
-    const floating = document.querySelector(".floating-contact");
-    if (floating){
-        floating.classList.add("hide-floating");
-    }
+    document.getElementById("pdfModal").style.display = "block";
 
-    document.getElementById("pdfModal").style.display="block";
-
-    const frame = document.getElementById("pdfFrame");
-    frame.src = file + "#toolbar=0&navpanes=0&scrollbar=0";
-    frame.style.transform = "scale(1)";
+    setTimeout(()=>{
+        renderPDF();
+    },100);
 }
-
 
 
 
@@ -451,19 +476,54 @@ function openPDF(file){
 // }
 
 
+function renderPDF(){
+
+    const canvas = document.getElementById("pdfCanvas");
+    if(!canvas) return;
+
+    const ctx = canvas.getContext("2d");
+
+    pdfjsLib.getDocument(currentPDF).promise.then(function(pdf){
+
+        pdfDoc = pdf;
+
+        pdfDoc.getPage(pageNum).then(function(page){
+
+            const viewport = page.getViewport({ scale: zoomLevel });
+
+            canvas.height = viewport.height;
+            canvas.width = viewport.width;
+
+            page.render({
+                canvasContext: ctx,
+                viewport: viewport
+            });
+        });
+    });
+}
+
+
+
 function zoomIn(){
-    zoomLevel += 0.1;
-    applyZoom();
+    zoomLevel += 0.2;
+    const canvas = document.getElementById("pdfCanvas");
+    if(canvas){
+        canvas.style.transform = "scale(" + zoomLevel + ")";
+    }
 }
 
 function zoomOut(){
-    zoomLevel -= 0.1;
+    zoomLevel -= 0.2;
     if(zoomLevel < 0.5) zoomLevel = 0.5;
-    applyZoom();
+    const canvas = document.getElementById("pdfCanvas");
+    if(canvas){
+        canvas.style.transform = "scale(" + zoomLevel + ")";
+    }
 }
 
+
 function applyZoom(){
-    const frame = document.getElementById("pdfFrame");
+    // const frame = document.getElementById("pdfFrame");
     frame.style.transform = "scale(" + zoomLevel + ")";
 }
 

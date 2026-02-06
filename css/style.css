@@ -1606,3 +1606,8 @@ body.splash-active {
     opacity: 0 !important;
     pointer-events: none !important;
 }
+#pdfCanvas{
+    width:100%;
+    height:auto;
+    display:block;
+}
