@@ -1,5 +1,3 @@
-// MARK:1st js
-
 /* =========================
    MOBILE MENU TOGGLE
 ========================= */
@@ -62,17 +60,11 @@
 
 //4
 
-// MARK:2st js
 const menuToggle = document.querySelector(".menu-toggle");
 const nav = document.querySelector(".nav");
 const isMobile = window.innerWidth <= 768;
 let splashRunning = true;
 // const isHomePage = window.location.pathname.endsWith("index.html") || window.location.pathname === "/";
-
-if (typeof pdfjsLib !== "undefined") {
-    pdfjsLib.GlobalWorkerOptions.workerSrc =
-    "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.2.67/pdf.worker.min.js";
-}
 
 const isHomePage =
   window.location.pathname.endsWith("/STRUCTIQ/") ||
@@ -80,15 +72,10 @@ const isHomePage =
 
 
 /* Toggle menu */
-
-
-if(menuToggle && nav){
-    menuToggle.addEventListener("click",(e)=>{
-        e.stopPropagation();
-        nav.classList.toggle("active");
-    });
-}
-
+menuToggle.addEventListener("click", (e) => {
+  e.stopPropagation(); // prevent document click
+  toggleMenu();
+});
 
 /* Close menu when clicking outside */
 document.addEventListener("click", () => {
@@ -361,50 +348,13 @@ window.addEventListener("load", () => {
   const splash = document.getElementById("splash");
 
   // ❌ Not homepage OR already shown → remove splash immediately
-  // if (!isHomePage || sessionStorage.getItem("splashShown")) {
-  //   if (splash) splash.remove();
-  //   splashRunning = false;
-  //   document.body.classList.remove("splash-active");
-  //   document.body.style.overflow = ""; // 🔥 enable scroll
-  //   return;
-  // }
-
-  window.addEventListener("load", () => {
-  const splash = document.getElementById("splash");
-
-  // splash element illaina exit
-  if (!splash) {
-    splashRunning = false;
-    return;
-  }
-
-  // Not homepage OR already shown
   if (!isHomePage || sessionStorage.getItem("splashShown")) {
-    splash.remove();
+    if (splash) splash.remove();
     splashRunning = false;
     document.body.classList.remove("splash-active");
-    document.body.style.overflow = "";
+    document.body.style.overflow = ""; // 🔥 enable scroll
     return;
   }
-
-  sessionStorage.setItem("splashShown", "true");
-
-  document.body.classList.add("splash-active");
-  splashRunning = true;
-
-  setTimeout(() => {
-    splash.style.opacity = "0";
-    splash.style.transition = "opacity 0.6s ease";
-
-    setTimeout(() => {
-      splash.remove();
-      document.body.classList.remove("splash-active");
-      document.body.style.overflow = "";
-      splashRunning = false;
-    }, 600);
-  }, 3000);
-});
-
 
   // ✅ First time on index page
   sessionStorage.setItem("splashShown", "true");
@@ -426,378 +376,67 @@ window.addEventListener("load", () => {
 });
 
 //pdf samples
-// function openPDF(file){
-//     document.getElementById("pdfModal").style.display="block";
-
-//     document.getElementById("pdfFrame").src =
-//     file + "#toolbar=0&navpanes=0&scrollbar=0";
-// }
-
-// function closePDF(){
-//     document.getElementById("pdfModal").style.display="none";
-//     document.getElementById("pdfFrame").src="";
-// }
-
-// /* Right click disable */
-// document.addEventListener("contextmenu", function(e){
-//     e.preventDefault();
-// });
-
-// let zoomLevel = 1;
-// let currentPDF = "";
-
-// // function openPDF(file){
-// //     currentPDF = file;
-// //     zoomLevel = 1;
-
-// //     document.getElementById("pdfModal").style.display="block";
-
-// //     const frame = document.getElementById("pdfFrame");
-// //     frame.src = file + "#toolbar=0&navpanes=0&scrollbar=0";
-// //     frame.style.transform = "scale(1)";
-// // }
-// function openPDF(file){
-//     document.getElementById("pdfModal").style.display="block";
-//     document.getElementById("pdfFrame").src = file;
-// }
-
-
-
-// function zoomIn(){
-//     zoomLevel += 0.1;
-//     applyZoom();
-// }
-
-// function zoomOut(){
-//     zoomLevel -= 0.1;
-//     if(zoomLevel < 0.5) zoomLevel = 0.5;
-//     applyZoom();
-// }
-
-// function applyZoom(){
-//     const frame = document.getElementById("pdfFrame");
-//     frame.style.transform = "scale(" + zoomLevel + ")";
-// }
-
-
-let pdfDoc = null;
-let pageNum = 1;
-let scale = 1.2;
-let currentPDF = "";
-
-pdfjsLib.GlobalWorkerOptions.workerSrc =
-"https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
-
-
 function openPDF(file){
-
-    if(typeof pdfjsLib === "undefined"){
-        alert("PDF viewer loading... please refresh page");
-        return;
-    }
-
-    currentPDF = file;
     document.getElementById("pdfModal").style.display="block";
-    renderPDF();
+
+    document.getElementById("pdfFrame").src =
+    file + "#toolbar=0&navpanes=0&scrollbar=0";
 }
 
 function closePDF(){
     document.getElementById("pdfModal").style.display="none";
+    document.getElementById("pdfFrame").src="";
 }
 
+/* Right click disable */
+document.addEventListener("contextmenu", function(e){
+    e.preventDefault();
+});
+
+let zoomLevel = 1;
+let currentPDF = "";
+
+function openPDF(file){
+    currentPDF = file;
+    zoomLevel = 1;
+
+    document.getElementById("pdfModal").style.display="block";
+
+    const frame = document.getElementById("pdfFrame");
+    frame.src = file + "#toolbar=0&navpanes=0&scrollbar=0";
+    frame.style.transform = "scale(1)";
+}
+
+// function openPDF(file){
+
+//     document.getElementById("pdfModal").style.display="block";
+
+//     // full correct path create
+//     const fullURL = window.location.href
+//         .replace("sample.html","") + file;
+
+//     document.getElementById("pdfFrame").src =
+//         "https://docs.google.com/gview?embedded=1&url=" + fullURL;
+// }
+
+
 function zoomIn(){
-    zoomLevel += 0.2;
-    const canvas = document.getElementById("pdfCanvas");
-    if(canvas){
-        canvas.style.transform = "scale(" + zoomLevel + ")";
-    }
+    zoomLevel += 0.1;
+    applyZoom();
 }
 
 function zoomOut(){
-    zoomLevel -= 0.2;
+    zoomLevel -= 0.1;
     if(zoomLevel < 0.5) zoomLevel = 0.5;
-    const canvas = document.getElementById("pdfCanvas");
-    if(canvas){
-        canvas.style.transform = "scale(" + zoomLevel + ")";
-    }
+    applyZoom();
 }
 
-function renderPDF(){
-
-    const canvas = document.getElementById("pdfCanvas");
-    if(!canvas) return;
-
-    const ctx = canvas.getContext("2d");
-
-    pdfjsLib.getDocument(currentPDF).promise.then(function(pdf){
-
-        pdfDoc = pdf;
-
-        pdfDoc.getPage(pageNum).then(function(page){
-
-            const viewport = page.getViewport({ scale: scale });
-
-            canvas.height = viewport.height;
-            canvas.width = viewport.width;
-
-            page.render({
-                canvasContext: ctx,
-                viewport: viewport
-            });
-        });
-    });
+function applyZoom(){
+    const frame = document.getElementById("pdfFrame");
+    frame.style.transform = "scale(" + zoomLevel + ")";
 }
 
 
 
 window.addEventListener("scroll", revealOnScroll);
 window.addEventListener("load", revealOnScroll);
-
-// MARK:3st js
-
-
-// const menuToggle = document.querySelector(".menu-toggle");
-// const nav = document.querySelector(".nav");
-// const isMobile = window.innerWidth <= 768;
-// let splashRunning = true;
-// let zoomLevel = 1;   // FIX
-
-// if (typeof pdfjsLib !== "undefined") {
-//     pdfjsLib.GlobalWorkerOptions.workerSrc =
-//     "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
-// }
-
-// const isHomePage =
-//   window.location.pathname.endsWith("/STRUCTIQ/") ||
-//   window.location.pathname.endsWith("/STRUCTIQ/index.html");
-
-
-// /* Toggle menu */
-// if(menuToggle && nav){
-//     menuToggle.addEventListener("click",(e)=>{
-//         e.stopPropagation();
-//         nav.classList.toggle("active");
-//     });
-// }
-
-// /* Close menu when clicking outside */
-// document.addEventListener("click", () => {
-//   if (nav && nav.classList.contains("active")) {
-//     closeMenu();
-//   }
-// });
-
-// /* Prevent nav clicks from closing */
-// if(nav){
-//   nav.addEventListener("click", (e) => {
-//     e.stopPropagation();
-//   });
-// }
-
-// /* Close menu on nav link click */
-// document.querySelectorAll(".nav a").forEach(link => {
-//   link.addEventListener("click", () => {
-//     closeMenu();
-//   });
-// });
-
-// function toggleMenu() {
-//   if (nav && nav.classList.contains("active")) {
-//     closeMenu();
-//   } else {
-//     openMenu();
-//   }
-// }
-
-// function openMenu() {
-//   if(!nav || !menuToggle) return;
-//   nav.classList.add("active");
-//   menuToggle.textContent = "✕";
-//   document.body.classList.add("no-scroll");
-// }
-
-// function closeMenu() {
-//   if(!nav || !menuToggle) return;
-//   nav.classList.remove("active");
-//   menuToggle.textContent = "☰";
-//   document.body.classList.remove("no-scroll");
-// }
-
-// /* =========================
-//    STICKY HEADER EFFECT
-// ========================= */
-// const header = document.querySelector(".header");
-
-// if (!isMobile && header) {
-//   window.addEventListener("scroll", () => {
-//     if (window.scrollY > 60) {
-//       header.style.boxShadow = "0 4px 20px rgba(0,0,0,0.08)";
-//     } else {
-//       header.style.boxShadow = "none";
-//     }
-//   });
-// }
-
-// /* =========================
-//    SCROLL REVEAL ANIMATION
-// ========================= */
-// const revealElements = document.querySelectorAll(
-//     ".hero-content, .service-card, .why-box, .intro p"
-// );
-
-// const revealOnScroll = () => {
-//     const windowHeight = window.innerHeight;
-
-//     revealElements.forEach(el => {
-//         const elementTop = el.getBoundingClientRect().top;
-
-//         if (elementTop < windowHeight - 80) {
-//             el.classList.add("reveal");
-//         }
-//     });
-// };
-
-// document.addEventListener("click", (e) => {
-//   if (
-//     nav &&
-//     menuToggle &&
-//     nav.classList.contains("active") &&
-//     !nav.contains(e.target) &&
-//     !menuToggle.contains(e.target)
-//   ) {
-//     nav.classList.remove("active");
-//   }
-// });
-
-// window.addEventListener("scroll", () => {
-//   if (header) {
-//     if (window.scrollY > 60) {
-//       header.style.boxShadow = "0 4px 20px rgba(0,0,0,0.08)";
-//     } else {
-//       header.style.boxShadow = "none";
-//     }
-//   }
-// });
-
-// const slides = document.querySelectorAll(".slides");
-// let index = 0;
-
-// if(slides.length>0){
-// setInterval(() => {
-//   slides[index].classList.remove("active");
-//   index = (index + 1) % slides.length;
-//   slides[index].classList.add("active");
-// }, 5000);
-// }
-
-// const scrollElements = document.querySelectorAll("[data-scroll]");
-
-// const scrollReveal = () => {
-//   const triggerPoint = window.innerHeight - 120;
-
-//   scrollElements.forEach(el => {
-//     const top = el.getBoundingClientRect().top;
-
-//     if (top < triggerPoint) {
-//       el.classList.add("active");
-//     }
-//   });
-// };
-
-// window.addEventListener("scroll", scrollReveal);
-// scrollReveal();
-
-// const parallaxSlides = document.querySelectorAll(".slides");
-
-// if (!isMobile) {
-//   window.addEventListener("scroll", () => {
-//     if (splashRunning) return;
-//     const scrollTop = window.pageYOffset;
-//     parallaxSlides.forEach(slide => {
-//       slide.style.transform =
-//         `translateY(${scrollTop * 0.25}px) scale(1.08)`;
-//     });
-//   });
-// }
-
-// const pageHeroImages = document.querySelectorAll(".hero-bg");
-// let heroIndex = 0;
-
-// if (pageHeroImages.length > 0) {
-//   setInterval(() => {
-//     pageHeroImages[heroIndex].classList.remove("active");
-//     heroIndex = (heroIndex + 1) % pageHeroImages.length;
-//     pageHeroImages[heroIndex].classList.add("active");
-//   }, 5000);
-// }
-
-// /* loader FIX */
-// window.addEventListener("load", () => {
-//   const loader = document.getElementById("page-loader");
-//   setTimeout(() => {
-//     if(loader) loader.remove();
-//   }, 1200);
-// });
-
-// /* PDF */
-// let pdfDoc = null;
-// let pageNum = 1;
-// let scale = 1.2;
-// let currentPDF = "";
-
-// pdfjsLib.GlobalWorkerOptions.workerSrc =
-// "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
-
-// function openPDF(file){
-//     if(typeof pdfjsLib === "undefined"){
-//         alert("PDF viewer loading... please refresh page");
-//         return;
-//     }
-//     currentPDF = file;
-//     document.getElementById("pdfModal").style.display="block";
-//     renderPDF();
-// }
-
-// function closePDF(){
-//     const modal=document.getElementById("pdfModal");
-//     if(modal) modal.style.display="none";
-// }
-
-// function zoomIn(){
-//     zoomLevel += 0.2;
-//     const canvas = document.getElementById("pdfCanvas");
-//     if(canvas){
-//         canvas.style.transform = "scale(" + zoomLevel + ")";
-//     }
-// }
-
-// function zoomOut(){
-//     zoomLevel -= 0.2;
-//     if(zoomLevel < 0.5) zoomLevel = 0.5;
-//     const canvas = document.getElementById("pdfCanvas");
-//     if(canvas){
-//         canvas.style.transform = "scale(" + zoomLevel + ")";
-//     }
-// }
-
-// function renderPDF(){
-//     const canvas = document.getElementById("pdfCanvas");
-//     if(!canvas) return;
-//     const ctx = canvas.getContext("2d");
-
-//     pdfjsLib.getDocument(currentPDF).promise.then(function(pdf){
-//         pdfDoc = pdf;
-//         pdfDoc.getPage(pageNum).then(function(page){
-//             const viewport = page.getViewport({ scale: scale });
-//             canvas.height = viewport.height;
-//             canvas.width = viewport.width;
-//             page.render({
-//                 canvasContext: ctx,
-//                 viewport: viewport
-//             });
-//         });
-//     });
-// }
-
-// window.addEventListener("scroll", revealOnScroll);
-// window.addEventListener("load", revealOnScroll);
