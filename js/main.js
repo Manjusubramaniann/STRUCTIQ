@@ -376,12 +376,12 @@ window.addEventListener("load", () => {
 });
 
 //pdf samples
-function openPDF(file){
-    document.getElementById("pdfModal").style.display="block";
+// function openPDF(file){
+//     document.getElementById("pdfModal").style.display="block";
 
-    document.getElementById("pdfFrame").src =
-    file + "#toolbar=0&navpanes=0&scrollbar=0";
-}
+//     document.getElementById("pdfFrame").src =
+//     file + "#toolbar=0&navpanes=0&scrollbar=0";
+// }
 
 function closePDF(){
     document.getElementById("pdfModal").style.display="none";
