@@ -1632,3 +1632,12 @@ body.splash-active {
     inset: 0;
     z-index: 9998;
 }
+#pdfCanvas{
+    transform-origin: top left;   /* IMPORTANT */
+}
+.pdf-viewer{
+    width: 100%;
+    height: 100%;
+    overflow: auto;     /* allow scroll after zoom */
+    position: relative;
+}
