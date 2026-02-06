@@ -396,21 +396,28 @@ document.addEventListener("contextmenu", function(e){
 let zoomLevel = 1;
 let currentPDF = "";
 
+function openPDF(file){
+    currentPDF = file;
+    zoomLevel = 1;
+
+    document.getElementById("pdfModal").style.display="block";
+
+    const frame = document.getElementById("pdfFrame");
+    frame.src = file + "#toolbar=0&navpanes=0&scrollbar=0";
+    frame.style.transform = "scale(1)";
+}
+
 // function openPDF(file){
-//     currentPDF = file;
-//     zoomLevel = 1;
 
 //     document.getElementById("pdfModal").style.display="block";
 
-//     const frame = document.getElementById("pdfFrame");
-//     frame.src = file + "#toolbar=0&navpanes=0&scrollbar=0";
-//     frame.style.transform = "scale(1)";
-// }
-function openPDF(file){
-    document.getElementById("pdfModal").style.display="block";
-    document.getElementById("pdfFrame").src = file;
-}
+//     // full correct path create
+//     const fullURL = window.location.href
+//         .replace("sample.html","") + file;
 
+//     document.getElementById("pdfFrame").src =
+//         "https://docs.google.com/gview?embedded=1&url=" + fullURL;
+// }
 
 
 function zoomIn(){
