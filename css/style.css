@@ -1091,7 +1091,7 @@ body.no-scroll {
   }
 }
 .hero-slider::after {
-  content: "";
+  /* content: "";
   position: absolute;
   top: 0;
   left: -60%;
@@ -1103,7 +1103,8 @@ body.no-scroll {
     rgba(255, 200, 80, 0.25),
     transparent
   );
-  animation: lightSweep 6s infinite;
+  animation: lightSweep 6s infinite; */
+  display: none;
 }
 
 @keyframes lightSweep {
