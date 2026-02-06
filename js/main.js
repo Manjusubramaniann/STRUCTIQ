@@ -361,13 +361,50 @@ window.addEventListener("load", () => {
   const splash = document.getElementById("splash");
 
   // ❌ Not homepage OR already shown → remove splash immediately
-  if (!isHomePage || sessionStorage.getItem("splashShown")) {
-    if (splash) splash.remove();
+  // if (!isHomePage || sessionStorage.getItem("splashShown")) {
+  //   if (splash) splash.remove();
+  //   splashRunning = false;
+  //   document.body.classList.remove("splash-active");
+  //   document.body.style.overflow = ""; // 🔥 enable scroll
+  //   return;
+  // }
+
+  window.addEventListener("load", () => {
+  const splash = document.getElementById("splash");
+
+  // splash element illaina exit
+  if (!splash) {
     splashRunning = false;
-    document.body.classList.remove("splash-active");
-    document.body.style.overflow = ""; // 🔥 enable scroll
     return;
   }
+
+  // Not homepage OR already shown
+  if (!isHomePage || sessionStorage.getItem("splashShown")) {
+    splash.remove();
+    splashRunning = false;
+    document.body.classList.remove("splash-active");
+    document.body.style.overflow = "";
+    return;
+  }
+
+  sessionStorage.setItem("splashShown", "true");
+
+  document.body.classList.add("splash-active");
+  splashRunning = true;
+
+  setTimeout(() => {
+    splash.style.opacity = "0";
+    splash.style.transition = "opacity 0.6s ease";
+
+    setTimeout(() => {
+      splash.remove();
+      document.body.classList.remove("splash-active");
+      document.body.style.overflow = "";
+      splashRunning = false;
+    }, 600);
+  }, 3000);
+});
+
 
   // ✅ First time on index page
   sessionStorage.setItem("splashShown", "true");
