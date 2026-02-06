@@ -411,10 +411,13 @@ function openPDF(file){
 
     document.getElementById("pdfModal").style.display="block";
 
-    document.getElementById("pdfFrame").src =
-        "https://docs.google.com/gview?embedded=1&url=" +
-        window.location.origin + "/" + file;
+    const frame = document.getElementById("pdfFrame");
+
+    // open inside website viewer page
+    frame.src = "viewer.html?file=" + file;
+
 }
+
 
 
 function zoomIn(){
