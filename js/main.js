@@ -476,6 +476,32 @@ function openPDF(file){
 // }
 
 
+// function renderPDF(){
+
+//     const canvas = document.getElementById("pdfCanvas");
+//     if(!canvas) return;
+
+//     const ctx = canvas.getContext("2d");
+
+//     pdfjsLib.getDocument(currentPDF).promise.then(function(pdf){
+
+//         pdfDoc = pdf;
+
+//         pdfDoc.getPage(pageNum).then(function(page){
+
+//             const viewport = page.getViewport({ scale: zoomLevel });
+
+//             canvas.height = viewport.height;
+//             canvas.width = viewport.width;
+
+//             page.render({
+//                 canvasContext: ctx,
+//                 viewport: viewport
+//             });
+//         });
+//     });
+// }
+
 function renderPDF(){
 
     const canvas = document.getElementById("pdfCanvas");
@@ -489,19 +515,23 @@ function renderPDF(){
 
         pdfDoc.getPage(pageNum).then(function(page){
 
-            const viewport = page.getViewport({ scale: zoomLevel });
+            const containerWidth = document.getElementById("pdfModal").clientWidth;
 
-            canvas.height = viewport.height;
-            canvas.width = viewport.width;
+            const viewport = page.getViewport({ scale: 1 });
+            const scaleRequired = containerWidth / viewport.width;
+
+            const scaledViewport = page.getViewport({ scale: scaleRequired });
+
+            canvas.height = scaledViewport.height;
+            canvas.width = scaledViewport.width;
 
             page.render({
                 canvasContext: ctx,
-                viewport: viewport
+                viewport: scaledViewport
             });
         });
     });
 }
-
 
 
 function zoomIn(){
