@@ -1602,3 +1602,7 @@ body.splash-active {
 .pdf-controls button:active{
     transform:scale(0.95);
 }
+.hide-floating {
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
