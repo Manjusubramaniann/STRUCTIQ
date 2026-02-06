@@ -407,29 +407,62 @@ let currentPDF = "";
 //     frame.style.transform = "scale(1)";
 // }
 
+let pdfDoc = null;
+let pageNum = 1;
+let scale = 1.2;
+
+const canvas = document.getElementById("pdfCanvas");
+const ctx = canvas.getContext("2d");
+
+pdfjsLib.GlobalWorkerOptions.workerSrc = "pdfjs/pdf.worker.min.js";
+
 function openPDF(file){
 
     document.getElementById("pdfModal").style.display="block";
 
-    const frame = document.getElementById("pdfFrame");
-
-    // open inside website viewer page
-    frame.src = "viewer.html?file=" + file;
-
+    pdfjsLib.getDocument(file).promise.then(function(pdf){
+        pdfDoc = pdf;
+        renderPage();
+    });
 }
 
+function renderPage(){
+    pdfDoc.getPage(pageNum).then(function(page){
 
+        const viewport = page.getViewport({scale: scale});
+        canvas.height = viewport.height;
+        canvas.width = viewport.width;
+
+        page.render({
+            canvasContext: ctx,
+            viewport: viewport
+        });
+    });
+}
 
 function zoomIn(){
-    zoomLevel += 0.1;
-    applyZoom();
+    scale += 0.2;
+    renderPage();
 }
 
 function zoomOut(){
-    zoomLevel -= 0.1;
-    if(zoomLevel < 0.5) zoomLevel = 0.5;
-    applyZoom();
+    if(scale <= 0.6) return;
+    scale -= 0.2;
+    renderPage();
 }
+
+
+
+// function zoomIn(){
+//     zoomLevel += 0.1;
+//     applyZoom();
+// }
+
+// function zoomOut(){
+//     zoomLevel -= 0.1;
+//     if(zoomLevel < 0.5) zoomLevel = 0.5;
+//     applyZoom();
+// }
 
 function applyZoom(){
     const frame = document.getElementById("pdfFrame");
