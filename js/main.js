@@ -64,8 +64,12 @@ const menuToggle = document.querySelector(".menu-toggle");
 const nav = document.querySelector(".nav");
 const isMobile = window.innerWidth <= 768;
 let splashRunning = true;
-let zoomLevel = 1.2;
+
 let currentPDF = "";
+let pdfDoc = null;
+let currentPage = 1;
+let zoomLevel = 1;
+
 
 // const isHomePage = window.location.pathname.endsWith("index.html") || window.location.pathname === "/";
 
@@ -401,12 +405,6 @@ function openPDF(file){
 //         floating.classList.remove("hide-floating");
 //     }
 // }
-function closePDF(){
-    const modal = document.getElementById("pdfModal");
-    if(modal){
-        modal.style.display="none";
-    }
-}
 
 /* Right click disable */
 document.addEventListener("contextmenu", function(e){
@@ -433,17 +431,6 @@ document.addEventListener("contextmenu", function(e){
 //     frame.style.transform = "scale(1)";
 // }
 
-function openPDF(file){
-
-    currentPDF = file;
-    pageNum = 1;
-
-    document.getElementById("pdfModal").style.display = "block";
-
-    setTimeout(()=>{
-        renderPDF();
-    },100);
-}
 
 
 
@@ -471,31 +458,31 @@ function openPDF(file){
 // }
 
 
-function renderPDF(){
+// function renderPDF(){
 
-    const canvas = document.getElementById("pdfCanvas");
-    if(!canvas) return;
+//     const canvas = document.getElementById("pdfCanvas");
+//     if(!canvas) return;
 
-    const ctx = canvas.getContext("2d");
+//     const ctx = canvas.getContext("2d");
 
-    pdfjsLib.getDocument(currentPDF).promise.then(function(pdf){
+//     pdfjsLib.getDocument(currentPDF).promise.then(function(pdf){
 
-        pdfDoc = pdf;
+//         pdfDoc = pdf;
 
-        pdfDoc.getPage(pageNum).then(function(page){
+//         pdfDoc.getPage(pageNum).then(function(page){
 
-            const viewport = page.getViewport({ scale: zoomLevel });
+//             const viewport = page.getViewport({ scale: zoomLevel });
 
-            canvas.height = viewport.height;
-            canvas.width = viewport.width;
+//             canvas.height = viewport.height;
+//             canvas.width = viewport.width;
 
-            page.render({
-                canvasContext: ctx,
-                viewport: viewport
-            });
-        });
-    });
-}
+//             page.render({
+//                 canvasContext: ctx,
+//                 viewport: viewport
+//             });
+//         });
+//     });
+// }
 
 
 
@@ -517,6 +504,51 @@ function zoomOut(){
 }
 
 
+function openPDF(file){
+
+    document.getElementById("pdfModal").style.display = "block";
+
+    const url = file;
+
+    pdfjsLib.getDocument(url).promise.then(function(pdf){
+        pdfDoc = pdf;
+        currentPage = 1;
+        renderPage(currentPage);
+    });
+}
+
+function renderPage(num){
+
+    pdfDoc.getPage(num).then(function(page){
+
+        const viewport = page.getViewport({ scale: zoomLevel });
+
+        const canvas = document.getElementById("pdfCanvas");
+        const ctx = canvas.getContext("2d");
+
+        canvas.width = viewport.width;
+        canvas.height = viewport.height;
+
+        page.render({
+            canvasContext: ctx,
+            viewport: viewport
+        });
+    });
+}
+
+// function zoomIn(){
+//     zoomLevel += 0.25;
+//     renderPage(currentPage);
+// }
+
+// function zoomOut(){
+//     zoomLevel = Math.max(0.5, zoomLevel - 0.25);
+//     renderPage(currentPage);
+// }
+
+function closePDF(){
+    document.getElementById("pdfModal").style.display = "none";
+}
 function applyZoom(){
     // const frame = document.getElementById("pdfFrame");
     frame.style.transform = "scale(" + zoomLevel + ")";

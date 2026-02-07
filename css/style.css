@@ -1632,3 +1632,15 @@ body.splash-active {
     inset: 0;
     z-index: 9998;
 }
+.pdf-frame-wrapper{
+    position:fixed;
+    inset:0;
+    overflow:auto;
+    background:#111;
+    padding:80px 40px 40px 40px; /* space for zoom buttons */
+    box-sizing:border-box;
+}
+#pdfCanvas{
+    display:block;
+    transform-origin: top left; 
+}
