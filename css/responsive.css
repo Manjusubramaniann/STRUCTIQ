@@ -462,3 +462,22 @@
   }
 
 }
+/* MOBILE FULL HEIGHT IMAGE */
+@media (max-width: 768px){
+
+    .sample-wrapper{
+        height: 50vh;          /* full screen height */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: auto;
+    }
+
+    .sample-img{
+        height: 60vh;          /* image full height */
+        width: auto;
+        max-width: 100%;
+        object-fit: contain;
+    }
+
+}
