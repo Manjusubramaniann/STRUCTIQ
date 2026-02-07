@@ -546,9 +546,19 @@ function renderPage(num){
 //     renderPage(currentPage);
 // }
 
+// function closePDF(){
+//     document.getElementById("pdfModal").style.display = "none";
+// }
 function closePDF(){
-    document.getElementById("pdfModal").style.display = "none";
+    const modal = document.getElementById("pdfModal");
+    if(modal){
+        modal.style.display = "none";
+    }
+
+    /* Reload the page */
+    location.reload();
 }
+
 function applyZoom(){
     // const frame = document.getElementById("pdfFrame");
     frame.style.transform = "scale(" + zoomLevel + ")";
