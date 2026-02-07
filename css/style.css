@@ -1504,152 +1504,98 @@ body.splash-active {
     padding: 24px 18px;
   }
 }
-.pdf-modal{
-    display:none;
-    position:fixed;
-    z-index:9999;
-    left:0;
-    top:0;
+
+.sample-img{
     width:100%;
-    height:100%;
-    background:rgba(0,0,0,0.85);
+    margin-top:12px;
+    border-radius:10px;
+    object-fit:cover;
+}
+/* Sample page – one image per row */
+.service-grid{
+    grid-template-columns: 1fr !important;
 }
 
-.pdf-modal iframe{
-    width:90%;
-    height:90%;
-    margin:3% auto;
-    display:block;
-    border:none;
-}
-
-.close-pdf{
-    position:absolute;
-    right:30px;
-    top:20px;
-    font-size:40px;
-    color:white;
-    cursor:pointer;
-}
-.pdf-controls{
-    position:absolute;
-    top:20px;
-    left:30px;
-    z-index:10000;
-}
-
-.pdf-controls button{
-    padding:8px 14px;
-    font-size:18px;
-    margin-right:10px;
-    cursor:pointer;
-}
-.pdf-frame-wrapper{
-    width:90%;
-    height:90%;
-    margin:3% auto;
-    overflow:auto;
-}
-
-#pdfFrame{
+/* image style */
+.sample-img{
     width:100%;
-    height:100%;
-    border:none;
-    transform-origin: top left;
+    margin-top:12px;
+    border-radius:12px;
+    object-fit:cover;
 }
-.pdf-frame-wrapper{
-    width:90%;
-    height:90%;
-    margin:3% auto;
-    overflow:auto;
-    position:relative;
+.image-frame{
+    width: 100%;
+    max-width: 600px;
+    margin: 30px auto;
+    border: 2px solid #ccc;
+    padding: 10px;
+    overflow: hidden;
+    background: #fff;
 }
 
-#pdfFrame{
+.controls{
+    text-align: right;
+    margin-bottom: 10px;
+}
+
+.controls button{
+    padding: 6px 12px;
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+.image-container{
+    width: 100%;
+    overflow: hidden;
+}
+
+.zoom-image{
+    width: 100%;
+    transition: transform 0.3s;
+}
+/* Full width frame */
+.sample-wrapper{
     width:100%;
-    height:100%;
-    border:none;
-    transform-origin: top left;
-}
-.pdf-controls{
-    position:absolute;
-    top:20px;
-    left:25px;
-    z-index:10000;
-    display:flex;
-    gap:12px;
+    overflow:auto;        /* 🔥 scroll enable */
 }
 
-.pdf-controls button{
-    width:42px;
-    height:42px;
-    border-radius:50%;
-    border:none;
-    font-size:22px;
-    font-weight:600;
-    cursor:pointer;
-    background:linear-gradient(135deg,#2563eb,#1e40af);
-    color:white;
-    box-shadow:0 4px 10px rgba(0,0,0,0.25);
-    transition:all 0.25s ease;
-}
-
-.pdf-controls button:hover{
-    transform:scale(1.08);
-    box-shadow:0 6px 14px rgba(0,0,0,0.35);
-}
-
-.pdf-controls button:active{
-    transform:scale(0.95);
-}
-.hide-floating {
-    opacity: 0 !important;
-    pointer-events: none !important;
-}
-#pdfCanvas{
+/* image default */
+.sample-img{
     width:100%;
-    height:auto;
-    display:block;
+    border-radius:12px;
+    cursor: zoom-in;
+    transition: transform 0.3s ease;
 }
-.pdf-close{
-    position:fixed;
-    top:15px;
-    right:15px;
-    z-index:10001;   /* 🔥 important */
-    background:rgba(0,0,0,0.7);
+
+/* zoomed image */
+.sample-img.zoomed{
+    transform: scale(2);   /* zoom level */
+    cursor: zoom-out;
+}
+.zoom-controls{
+    text-align:right;
+    margin-bottom:10px;
+}
+
+.zoom-controls button{
+    width:40px;
+    height:40px;
+    font-size:20px;
+    margin-left:6px;
+    border:none;
+    border-radius:8px;
+    background:#2563eb;
     color:#fff;
-    width:42px;
-    height:42px;
-    border-radius:50%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:22px;
     cursor:pointer;
 }
 
-#pdfModal{
-    position: fixed;
-    inset: 0;
-    z-index: 9998;
+.sample-wrapper{
+    width:100%;
+    overflow:auto;      /* scroll enable */
 }
-.pdf-frame-wrapper{
-    position:fixed;
-    inset:0;
-    overflow:auto;
-    background:#111;
-    padding:80px 40px 40px 40px; /* space for zoom buttons */
-    box-sizing:border-box;
-}
-#pdfCanvas{
-    display:block;
-    transform-origin: top left; 
-}
-.pdf-controls{
-    position:fixed;
-    top:15px;
-    left:15px;
-    z-index:10001;
-    display:flex;
-    gap:12px;
+
+.sample-img{
+    width:100%;
+    transform-origin: top left;
+    transition: transform 0.2s ease;
 }
