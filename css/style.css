@@ -1566,36 +1566,3 @@ body.splash-active {
     cursor: zoom-in;
     transition: transform 0.3s ease;
 }
-
-/* zoomed image */
-.sample-img.zoomed{
-    transform: scale(2);   /* zoom level */
-    cursor: zoom-out;
-}
-.zoom-controls{
-    text-align:right;
-    margin-bottom:10px;
-}
-
-.zoom-controls button{
-    width:40px;
-    height:40px;
-    font-size:20px;
-    margin-left:6px;
-    border:none;
-    border-radius:8px;
-    background:#2563eb;
-    color:#fff;
-    cursor:pointer;
-}
-
-.sample-wrapper{
-    width:100%;
-    overflow:auto;      /* scroll enable */
-}
-
-.sample-img{
-    width:100%;
-    transform-origin: top left;
-    transition: transform 0.2s ease;
-}

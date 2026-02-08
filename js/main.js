@@ -412,34 +412,34 @@ document.addEventListener("contextmenu", function(e){
 });
 
 
-function zoomIn(btn){
-    const card = btn.closest(".service-card");
-    const img = card.querySelector(".sample-img");
+// function zoomIn(btn){
+//     const card = btn.closest(".service-card");
+//     const img = card.querySelector(".sample-img");
 
-    let zoom = img.getAttribute("data-zoom") || 1;
-    zoom = parseFloat(zoom) + 0.2;
+//     let zoom = img.getAttribute("data-zoom") || 1;
+//     zoom = parseFloat(zoom) + 0.2;
 
-    img.style.transform = "scale(" + zoom + ")";
-    img.setAttribute("data-zoom", zoom);
-}
+//     img.style.transform = "scale(" + zoom + ")";
+//     img.setAttribute("data-zoom", zoom);
+// }
 
-function zoomOut(btn){
-    const card = btn.closest(".service-card");
-    const img = card.querySelector(".sample-img");
+// function zoomOut(btn){
+//     const card = btn.closest(".service-card");
+//     const img = card.querySelector(".sample-img");
 
-    let zoom = img.getAttribute("data-zoom") || 1;
-    zoom = parseFloat(zoom) - 0.2;
-    if(zoom < 1) zoom = 1;
+//     let zoom = img.getAttribute("data-zoom") || 1;
+//     zoom = parseFloat(zoom) - 0.2;
+//     if(zoom < 1) zoom = 1;
 
-    img.style.transform = "scale(" + zoom + ")";
-    img.setAttribute("data-zoom", zoom);
-}
+//     img.style.transform = "scale(" + zoom + ")";
+//     img.setAttribute("data-zoom", zoom);
+// }
 
 
 
-function toggleZoom(img){
-    img.classList.toggle("zoomed");
-}
+// function toggleZoom(img){
+//     img.classList.toggle("zoomed");
+// }
 
 
 // function openPDF(file){
