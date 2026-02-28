@@ -24,12 +24,7 @@ app.post("/send-mail", async (req, res) => {
       from: "STRUCTIQ Website <noreply@structiqrebarservice.com>",
       to: ["manjusubramanian39@gmail.com"],
       // reply_to: email,
-       reply_to: [
-    {
-      email: email,
-      name: name
-    }
-  ],
+      reply_to: `${name} <${email}>`,  
       subject: `New Contact Enquiry from ${name}`,
 
       text: `
