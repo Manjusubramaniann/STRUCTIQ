@@ -234,7 +234,7 @@
             }
         }
     </script> -->
-
+<!-- 
     <script>
 const API_URL = "https://structiq.onrender.com/send-mail";
 
@@ -296,8 +296,77 @@ function showPopup(msg) {
 function closePopup() {
   document.getElementById("popup").classList.add("hidden");
 }
-</script>
+</script> -->
 
+<script>
+const API_URL = "https://structiq.onrender.com/send-mail";
+
+const form = document.getElementById("contactForm");
+let lastSubmitTime = 0;
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const now = Date.now();
+
+  // 🛑 SPAM PROTECTION (5 seconds)
+  if (now - lastSubmitTime < 5000) {
+    showPopup("Please wait a few seconds before sending again ❗");
+    return;
+  }
+  lastSubmitTime = now;
+
+  const name = document.getElementById("name").value.trim();
+  const phone = document.getElementById("phone").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const message = document.getElementById("message").value.trim();
+
+  // 🛑 BASIC VALIDATION
+  if (message.length < 2) {
+    showPopup("Message should be at least 10 characters ❗");
+    return;
+  }
+
+  // 🔵 SHOW LOADING OVERLAY
+  document.getElementById("loadingOverlay").classList.remove("hidden");
+
+  try {
+    const res = await fetch(API_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ name, phone, email, message })
+    });
+
+    const data = await res.json();
+
+    // 🔵 HIDE LOADING
+    document.getElementById("loadingOverlay").classList.add("hidden");
+
+    if (res.ok) {
+      showPopup("✅ Thank you! Your message has been sent successfully.");
+      form.reset();
+    } else {
+      showPopup("❌ Failed to send message. Please try again.");
+    }
+
+  } catch (err) {
+    document.getElementById("loadingOverlay").classList.add("hidden");
+    showPopup("⚠️ Server error. Please try later.");
+  }
+});
+
+/* POPUP FUNCTIONS */
+function showPopup(msg) {
+  document.getElementById("popupMessage").innerText = msg;
+  document.getElementById("popup").classList.remove("hidden");
+}
+
+function closePopup() {
+  document.getElementById("popup").classList.add("hidden");
+}
+</script>
 
     <!-- Floating Contact Buttons -->
     <div class="floating-contact">
@@ -335,6 +404,15 @@ function closePopup() {
         </a>
 
     </div>
+
+    <!-- Loading Overlay -->
+<div id="loadingOverlay" class="loading-overlay hidden">
+  <div class="loader-box">
+    <div class="spinner"></div>
+    <p>Sending your message...</p>
+  </div>
+</div>
+
 <!-- Popup -->
 <div id="popup" class="popup hidden">
   <div class="popup-box">
