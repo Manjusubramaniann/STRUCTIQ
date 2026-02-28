@@ -18,7 +18,8 @@ app.post("/send-mail", async (req, res) => {
 
   try {
     const result = await resend.emails.send({
-      from: "STRUCTIQ <manjusubramanian39@gmail.com>",
+      // from: "STRUCTIQ <manjusubramanian39@gmail.com>",
+      from: "STRUCTIQ <noreply@structiqrebarservice.com>",
       to: ["manjusubramanian39@gmail.com"],       // YOUR MAIL
       reply_to: email,                  // USER MAIL
       subject: "New Contact Enquiry - STRUCTIQ",
