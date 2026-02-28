@@ -18,13 +18,26 @@ app.get("/", (req, res) => {
 app.post("/send-mail", async (req, res) => {
   const { name, phone, email, message } = req.body;
 
+  if (!name || !email || !message) {
+    return res.status(400).json({ message: "Required fields missing" });
+  }
+
   try {
-    // 1️⃣ Send Mail to Company
+    // 1️⃣ Send enquiry to company
     await resend.emails.send({
       from: "STRUCTIQ Website <noreply@structiqrebarservice.com>",
-      to: ["manjusubramanian39@gmail.com"],  // Company Mail
-      reply_to: email, // When company clicks reply → goes to user
+      to: ["manjusubramanian39@gmail.com"],
+
+      // ✅ Proper Reply-To (IMPORTANT FIX)
+      reply_to: [
+        {
+          email: email,
+          name: name
+        }
+      ],
+
       subject: `New Contact Enquiry from ${name}`,
+
       text: `
 New enquiry received from STRUCTIQ website.
 
@@ -37,10 +50,10 @@ ${message}
       `
     });
 
-    // 2️⃣ Auto Thank You Mail to User
+    // 2️⃣ Send auto thank-you mail to user
     await resend.emails.send({
       from: "STRUCTIQ <noreply@structiqrebarservice.com>",
-      to: [email],  // User mail
+      to: [email],
       subject: "Thank you for contacting STRUCTIQ",
       text: `
 Hi ${name},
@@ -51,7 +64,7 @@ We have received your enquiry and our team will get back to you shortly.
 
 Regards,
 STRUCTIQ Team
-structiqrebarservice.com
+https://structiqrebarservice.com
       `
     });
 
